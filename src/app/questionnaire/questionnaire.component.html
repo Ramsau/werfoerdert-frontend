@@ -1,0 +1,14 @@
+<form
+  *ngIf="questionsForm && !loading"
+  [formGroup]="questionsForm">
+  <app-question
+    *ngFor="let question of questions"
+    [question]="question"
+    [formControlName]="question.id"
+  ></app-question>
+</form>
+<app-loading
+  *ngIf="loading"
+></app-loading>
+<br><br>
+<button (click)="onNext()">Weiter</button>

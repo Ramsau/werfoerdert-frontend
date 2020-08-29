@@ -1,0 +1,7 @@
+<p>Question: {{ question.text }}</p>
+<input
+  type="text"
+  placeholder="{{ question.type }}"
+  (change)="onChange()"
+  #valueInput
+> <small>{{ question.id }}</small>

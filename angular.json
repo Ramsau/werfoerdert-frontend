@@ -66,7 +66,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "werfoerdert:build"
+            "browserTarget": "werfoerdert:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -123,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "werfoerdert"
+    }
+  },
+  "defaultProject": "werfoerdert",
+  "cli": {
+    "analytics": "40ca2d40-38a6-4c50-87fb-5b74fa2a1ae7"
+  }
 }
