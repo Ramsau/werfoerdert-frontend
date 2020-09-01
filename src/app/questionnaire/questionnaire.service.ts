@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Question} from './question/question.model';
-import {Observable} from 'rxjs';
+import { Grant } from './grant.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,36 +9,24 @@ import {Observable} from 'rxjs';
 export class QuestionnaireService {
   constructor(private httpClient: HttpClient) { }
 
-  private parseQuestions(questionObjs): Question[] {
-    if (questionObjs instanceof Array)
-    {
-      return questionObjs.map(
-        questionObj => new Question(questionObj.text, questionObj.type, questionObj.id)
-      );
-    }
-    else{
-      return [];
-    }
-  }
-
-  getQuestions(): Observable<Question[]> {
-    return new Observable<Question[]>( subscriber => {
+  getQuestions(): Observable<Grant> {
+    return new Observable<Grant>( subscriber => {
       const sub = this.httpClient.get(
-        '/api/questions/next/',
-      ).subscribe(questionObjs => {
-        subscriber.next(this.parseQuestions(questionObjs));
+        '/api/grants/next/',
+      ).subscribe((grantObj: Grant) => {
+        subscriber.next(grantObj);
         sub.unsubscribe();
       });
     });
   }
 
-  postAnswers(postData): Observable<Question[]> {
-    return new Observable<Question[]>( subscriber => {
+  postAnswers(postData): Observable<Grant> {
+    return new Observable<Grant>( subscriber => {
       const sub = this.httpClient.post(
-        '/api/questions/next/',
+        '/api/grants/next/',
         postData,
-      ).subscribe(questionObjs => {
-        subscriber.next(this.parseQuestions(questionObjs));
+      ).subscribe((grantObj: Grant) => {
+        subscriber.next(grantObj);
         sub.unsubscribe();
       });
     });

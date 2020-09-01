@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, forwardRef, Input, OnInit, ViewChild} from '@angular/core';
-import { Question } from './question.model';
+import {Question} from './question.model';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
@@ -19,10 +19,22 @@ export class QuestionComponent implements OnInit, AfterViewInit, ControlValueAcc
   @Input()
   question: Question;
   @ViewChild('valueInput') input: ElementRef;
+  inputType: string;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
+    switch (this.question.type) {
+      case 1: {
+        this.inputType = 'number';
+        break;
+      }
+      case 2: {
+        this.inputType = 'checkbox';
+        break;
+      }
+    }
   }
 
   ngAfterViewInit(): void {
@@ -30,22 +42,34 @@ export class QuestionComponent implements OnInit, AfterViewInit, ControlValueAcc
   }
 
   onChange(): void {
-    this.propagateChange(this.input.nativeElement.value);
+    let value;
+    switch (this.question.type) {
+      case 2: {
+        value  = this.input.nativeElement.checked;
+        break;
+      }
+      default: {
+        value = this.input.nativeElement.value;
+      }
+    }
+    this.propagateChange(value);
   }
 
   writeValue(value: any): void {
     if (this.input) {
       this.input.nativeElement.value = value;
-    }
-    else {
+    } else {
       this.initValue = value;
     }
   }
 
-  propagateChange = (_: any) => {};
+  propagateChange = (_: any) => {
+  }
+
   registerOnChange(fn): void {
     this.propagateChange = fn;
   }
 
-  registerOnTouched(): void {}
+  registerOnTouched(): void {
+  }
 }

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { Question } from './question/question.model';
 import { QuestionnaireService } from './questionnaire.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Grant } from './grant.model';
 
 @Component({
   selector: 'app-questionnaire',
@@ -10,17 +11,17 @@ import { FormControl, FormGroup } from '@angular/forms';
   providers: [ QuestionnaireService ],
 })
 export class QuestionnaireComponent implements OnInit {
-  questions: Question[] = [];
+  grant: Grant;
   questionsForm: FormGroup;
   questionsAnswered: {[id: number]: any} = {};
   loading = true;
 
   constructor(private questionnaireService: QuestionnaireService) { }
 
-  updateQuestions(questions: Question[]): void {
-    this.questions = questions;
+  updateQuestions(grant: Grant): void {
+    this.grant = grant;
     // create a Form control instance for each Question
-    const formControls = questions.reduce((accumulator, question) => {
+    const formControls = grant.questions.reduce((accumulator, question) => {
       const key = question.id;
       const value = new FormControl('');
       Object.assign(accumulator, {[key]: value});

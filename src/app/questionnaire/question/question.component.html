@@ -1,6 +1,6 @@
-<p>Question: {{ question.text }}</p>
+<p>Question: {{ question.text_de }}</p>
 <input
-  type="text"
+  [type]="inputType"
   placeholder="{{ question.type }}"
   (change)="onChange()"
   #valueInput

@@ -1,4 +1,7 @@
-export class Question {
-  constructor(public text: string, public type: string, public id: number) {
-  }
+export interface Question {
+  text_de: string;
+  text_en: string;
+  type: number;
+  id: number;
 }
+

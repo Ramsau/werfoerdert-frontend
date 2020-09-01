@@ -2,7 +2,7 @@
   *ngIf="questionsForm && !loading"
   [formGroup]="questionsForm">
   <app-question
-    *ngFor="let question of questions"
+    *ngFor="let question of grant.questions"
     [question]="question"
     [formControlName]="question.id"
   ></app-question>
