@@ -9,3 +9,9 @@ export interface Grant{
   expires: Date;
   questions: Question[];
 }
+
+
+export interface QuestionnaireState{
+  current_grant: Grant | null;
+  grants_met: Grant[];
+}

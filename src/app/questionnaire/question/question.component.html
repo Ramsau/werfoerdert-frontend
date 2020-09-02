@@ -1,7 +1,9 @@
-<p>Question: {{ question.text_de }}</p>
+<p>{{ question.text_de }}</p>
 <input
   [type]="inputType"
   placeholder="{{ question.type }}"
   (change)="onChange()"
+  [name]="question.id"
+  [required]="required"
   #valueInput
-> <small>{{ question.id }}</small>
+>

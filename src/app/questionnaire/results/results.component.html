@@ -1,0 +1,10 @@
+<div *ngIf="state.grants_met.length > 0">
+  <h2>Sie sind für folgende Förderungen qualifiziert:</h2>
+  <p *ngFor="let grant of state.grants_met">
+    {{ grant.name_de }}
+  </p>
+</div>
+
+<div *ngIf="state.grants_met.length == 0">
+  <h2>Leider haben wir nichts für sie gefunden.</h2>
+</div>

@@ -8,19 +8,25 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
 import { QuestionComponent } from './questionnaire/question/question.component';
 import {HttpClient, HttpClientModule, } from '@angular/common/http';
 import { LoadingComponent } from './shared/loading/loading.component';
+import {routing} from './app.routes';
+import { IndexComponent } from './index/index.component';
+import { ResultsComponent } from './questionnaire/results/results.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     QuestionnaireComponent,
     QuestionComponent,
-    LoadingComponent
+    LoadingComponent,
+    IndexComponent,
+    ResultsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    routing,
   ],
   providers: [HttpClient ],
   bootstrap: [AppComponent]

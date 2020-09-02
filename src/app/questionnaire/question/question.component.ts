@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, forwardRef, Input, OnInit, ViewChild} from '@angular/core';
 import {Question} from './question.model';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors} from '@angular/forms';
 
 @Component({
   selector: 'app-question',
@@ -12,14 +12,23 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
       useExisting: forwardRef(() => QuestionComponent),
       multi: true,
     },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => QuestionComponent),
+      multi: true,
+    }
   ],
 })
 export class QuestionComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   private initValue;
-  @Input()
-  question: Question;
+  @Input()  question: Question;
   @ViewChild('valueInput') input: ElementRef;
-  inputType: string;
+  inputType = 'checkbox';
+  required = false;
+
+
+  propagateChange = (_: any) => {};
+  onValidationChange: any = () => {};
 
   constructor() {
   }
@@ -28,10 +37,12 @@ export class QuestionComponent implements OnInit, AfterViewInit, ControlValueAcc
     switch (this.question.type) {
       case 1: {
         this.inputType = 'number';
+        this.required = true;
         break;
       }
       case 2: {
         this.inputType = 'checkbox';
+        this.required = false;
         break;
       }
     }
@@ -53,6 +64,7 @@ export class QuestionComponent implements OnInit, AfterViewInit, ControlValueAcc
       }
     }
     this.propagateChange(value);
+    this.onValidationChange();
   }
 
   writeValue(value: any): void {
@@ -63,13 +75,26 @@ export class QuestionComponent implements OnInit, AfterViewInit, ControlValueAcc
     }
   }
 
-  propagateChange = (_: any) => {
-  }
-
   registerOnChange(fn): void {
     this.propagateChange = fn;
   }
 
   registerOnTouched(): void {
+  }
+
+  validate(control: AbstractControl): ValidationErrors {
+    if (this.input) {
+      return this.input.nativeElement.validity;
+    } else {
+      if (this.inputType === 'checkbox') {
+        return null;
+      } else {
+        return {notLoaded: true};
+      }
+    }
+  }
+
+  registerOnValidatorChange?(fn: () => void): void{
+    this.onValidationChange = fn;
   }
 }
