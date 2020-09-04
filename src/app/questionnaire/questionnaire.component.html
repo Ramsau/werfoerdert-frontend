@@ -1,18 +1,26 @@
-<div *ngIf="!showGrantsMet">
+<div id="form-wrapper" *ngIf="!showGrantsMet">
   <form
-    *ngIf="questionsForm && !loading"
-    [formGroup]="questionsForm">
+    *ngIf="!loading"
+    [formGroup]="questionsForm"
+    (ngSubmit)="onNext()"
+  >
     <app-question
       *ngFor="let question of state.current_grant.questions"
       [question]="question"
       [formControlName]="question.id"
     ></app-question>
+
+    <br>
+    <button
+      class="btn btn-primary"
+      type="submit"
+      [disabled]="!questionsForm.valid"
+    >Weiter</button>
   </form>
   <app-loading
     *ngIf="loading"
   ></app-loading>
   <br><br>
-  <button (click)="onNext()" [disabled]="!questionsForm.valid">Weiter</button>
 </div>
 
 <app-results

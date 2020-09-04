@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 import { QuestionnaireService } from './questionnaire.service';
-import { FormControl, FormGroup } from '@angular/forms';
 import { QuestionnaireState} from './grant.model';
+import { FormGroup } from '@angular/forms';
+import { getFormControl } from './question/question.component';
 
 @Component({
   selector: 'app-questionnaire',
@@ -10,32 +11,12 @@ import { QuestionnaireState} from './grant.model';
 })
 export class QuestionnaireComponent implements OnInit {
   state: QuestionnaireState;
-  questionsForm: FormGroup = new FormGroup({});
   questionsAnswered: {[id: number]: any} = {};
+  questionsForm = new FormGroup({});
   loading = true;
   showGrantsMet = false;
 
   constructor(private questionnaireService: QuestionnaireService) { }
-
-  updateQuestions(state: QuestionnaireState): void {
-    this.state = state;
-
-    // disable loading/show form
-    this.loading = false;
-    if (state.current_grant !== null) {
-      // create a Form control instance for each Question
-      const formControls = state.current_grant.questions.reduce((accumulator, question) => {
-        const key = question.id;
-        const value = new FormControl('');
-        Object.assign(accumulator, {[key]: value});
-        return accumulator;
-      }, {});
-      // update questions Form group
-      this.questionsForm = new FormGroup(formControls);
-    } else {
-      this.showGrantsMet = true;
-    }
-  }
 
   ngOnInit(): void {
     const sub = this.questionnaireService.getQuestions().subscribe(
@@ -48,12 +29,37 @@ export class QuestionnaireComponent implements OnInit {
       });
   }
 
+  updateQuestions(state: QuestionnaireState): void {
+    if (state.current_grant !== null) {
+      // First update controls object
+      const controls = state.current_grant.questions.reduce((accumulator, question) => {
+        const key = question.id;
+        const value = getFormControl(question);
+        Object.assign(accumulator, {[key]: value});
+        return accumulator;
+      }, {});
+      this.questionsForm = new FormGroup(controls);
+    } else {
+      this.showGrantsMet = true;
+    }
+
+    // update state => dom controls list gets updated
+    this.state = state;
+
+    // disable loading/show form
+    this.loading = false;
+  }
+
   onNext(): void {
     if (this.questionsForm.valid) {
       this.loading = true;
 
+      // add new answers to list of answered questions
       Object.assign(this.questionsAnswered, this.questionsForm.value);
 
+      console.log(this.questionsAnswered);
+
+      // send answers to api and get next answers
       const sub = this.questionnaireService.postAnswers(this.questionsAnswered)
         .subscribe(
           state => {

@@ -1,0 +1,15 @@
+@use '../../style/globals' as *;
+
+#form-wrapper {
+  display: block;
+  margin: 0 auto;
+  max-width: 700px;
+  width: 100%;
+  padding: 0 1em;
+  height: auto;
+  box-shadow: 0 -10px 0 $page-background, 0 10px 0 $page-background, -10px 0 10px $lightGrey, 10px 0 10px $lightGrey;
+
+  button {
+    float: right;
+  }
+}

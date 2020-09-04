@@ -1,0 +1,15 @@
+@use 'globals' as *;
+
+.btn {
+  padding: .5em 1em;
+  border: none;
+}
+
+.btn-primary {
+  background-color: $primaryColor;
+  color: $secondaryColor;
+}
+
+.btn-primary:disabled {
+  background-color: $primaryColorMuted;
+}

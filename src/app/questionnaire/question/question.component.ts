@@ -1,6 +1,14 @@
 import {AfterViewInit, Component, ElementRef, forwardRef, Input, OnInit, ViewChild} from '@angular/core';
 import {Question} from './question.model';
-import {AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors} from '@angular/forms';
+import {
+  AbstractControl,
+  ControlValueAccessor,
+  FormControl,
+  NG_VALIDATORS,
+  NG_VALUE_ACCESSOR,
+  ValidationErrors,
+  Validator, Validators
+} from '@angular/forms';
 
 @Component({
   selector: 'app-question',
@@ -19,7 +27,7 @@ import {AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR,
     }
   ],
 })
-export class QuestionComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+export class QuestionComponent implements OnInit, AfterViewInit, ControlValueAccessor, Validator {
   private initValue;
   @Input()  question: Question;
   @ViewChild('valueInput') input: ElementRef;
@@ -43,6 +51,11 @@ export class QuestionComponent implements OnInit, AfterViewInit, ControlValueAcc
       case 2: {
         this.inputType = 'checkbox';
         this.required = false;
+        break;
+      }
+      case 3: {
+        this.inputType = 'date';
+        this.required = true;
         break;
       }
     }
@@ -97,4 +110,14 @@ export class QuestionComponent implements OnInit, AfterViewInit, ControlValueAcc
   registerOnValidatorChange?(fn: () => void): void{
     this.onValidationChange = fn;
   }
+}
+
+export function getFormControl(question: Question): FormControl{
+  const validators = [];
+
+  if ([1, 3].indexOf(question.type) > -1) {
+    validators.push(Validators.required);
+  }
+
+  return new FormControl('', validators);
 }

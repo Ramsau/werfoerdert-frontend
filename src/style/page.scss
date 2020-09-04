@@ -1,0 +1,7 @@
+@use 'globals' as *;
+
+body {
+  background-color: $page-background;
+  min-height: calc(100vh - #{$body-margin * 2});
+  margin: $body-margin;
+}
