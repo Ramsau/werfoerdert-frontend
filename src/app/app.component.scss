@@ -1,0 +1,7 @@
+@use '../style/globals' as *;
+
+:host {
+  padding: $body-margin;
+  display: block;
+  width: calc(100% - #{$body-margin * 2});
+}

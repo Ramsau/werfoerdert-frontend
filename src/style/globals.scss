@@ -1,9 +1,14 @@
 $primaryColor: #d42026;
+$primaryColorHover: lighten($primaryColor, 10);
 $primaryColorMuted: rgba($primaryColor, .6);
 $secondaryColor: white;
-$grey: #909090;
+$grey: #d0d0d0;
 $lightGrey: #eaeaea;
 
 $page-background: #fcfcfc;
 
+$font-family: Futura, "Franklin Gothic Medium", Arial, sans-serif;
+
 $body-margin: 1rem;
+$header-height: 5rem;
+

@@ -62,7 +62,7 @@ export class QuestionComponent implements OnInit, AfterViewInit, ControlValueAcc
   }
 
   ngAfterViewInit(): void {
-    this.input.nativeElement.value = this.initValue;
+    this._setValue(this.initValue);
   }
 
   onChange(): void {
@@ -80,9 +80,18 @@ export class QuestionComponent implements OnInit, AfterViewInit, ControlValueAcc
     this.onValidationChange();
   }
 
-  writeValue(value: any): void {
-    if (this.input) {
+  _setValue(value: any): void {
+    if (this.inputType === 'checkbox') {
+      this.input.nativeElement.checked = value;
+    } else {
       this.input.nativeElement.value = value;
+    }
+  }
+
+  writeValue(value: any): void {
+    console.log(value);
+    if (this.input) {
+      this._setValue(value);
     } else {
       this.initValue = value;
     }
@@ -112,12 +121,12 @@ export class QuestionComponent implements OnInit, AfterViewInit, ControlValueAcc
   }
 }
 
-export function getFormControl(question: Question): FormControl{
+export function getFormControl(question: Question, questionsAnswered: {[id: number]: any}): FormControl{
   const validators = [];
 
   if ([1, 3].indexOf(question.type) > -1) {
     validators.push(Validators.required);
   }
 
-  return new FormControl('', validators);
+  return new FormControl(questionsAnswered[question.id], validators);
 }

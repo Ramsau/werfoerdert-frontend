@@ -1,3 +1,9 @@
+
+<div id="questionnaire-title">
+  <h1 *ngIf="state && !showGrantsMet">{{ state.current_grant.parent.name_de }} > {{ state.current_grant.name_de}}</h1>
+  <h1 *ngIf="!state && !showGrantsMet">Fragebogen</h1>
+  <h1 *ngIf="showGrantsMet">Resultat</h1>
+</div>
 <div id="form-wrapper" *ngIf="!showGrantsMet">
   <form
     *ngIf="!loading"
@@ -8,14 +14,25 @@
       *ngFor="let question of state.current_grant.questions"
       [question]="question"
       [formControlName]="question.id"
+      [(ngModel)]="questionsAnswered[question.id]"
     ></app-question>
 
     <br>
-    <button
-      class="btn btn-primary"
-      type="submit"
-      [disabled]="!questionsForm.valid"
-    >Weiter</button>
+    <div id="button-container">
+      <button
+        class="btn"
+        type="button"
+        *ngIf="questionsHistory.length"
+        (click)="onBack()"
+      >Zurück
+      </button>
+      <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="!questionsForm.valid"
+      >Weiter
+      </button>
+    </div>
   </form>
   <app-loading
     *ngIf="loading"

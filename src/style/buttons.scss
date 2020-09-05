@@ -3,6 +3,15 @@
 .btn {
   padding: .5em 1em;
   border: none;
+  background-color: $grey
+}
+
+.btn:hover{
+  background-color: $lightGrey;
+}
+
+.btn + .btn {
+  margin-left: .5em;
 }
 
 .btn-primary {
@@ -12,4 +21,8 @@
 
 .btn-primary:disabled {
   background-color: $primaryColorMuted;
+}
+
+.btn-primary:hover {
+  background-color: $primaryColorHover;
 }

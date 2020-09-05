@@ -1,7 +1,15 @@
 @use 'globals' as *;
 
+html * {
+  font-family: $font-family;
+}
+
 body {
   background-color: $page-background;
   min-height: calc(100vh - #{$body-margin * 2});
-  margin: $body-margin;
+  margin: 0;
+}
+
+router-outlet{
+  display: none;
 }

@@ -1,15 +1,38 @@
 @use '../../style/globals' as *;
 
+:host {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+#questionnaire-title {
+  background-color: $primaryColor;
+  color: $secondaryColor;
+  text-align: center;
+  height: $header-height;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
 #form-wrapper {
   display: block;
-  margin: 0 auto;
+  margin: $header-height auto 0;
   max-width: 700px;
-  width: 100%;
+  width: calc(100% - #{$body-margin * 2});
   padding: 0 1em;
   height: auto;
   box-shadow: 0 -10px 0 $page-background, 0 10px 0 $page-background, -10px 0 10px $lightGrey, 10px 0 10px $lightGrey;
 
-  button {
-    float: right;
+  #button-container {
+    display: flex;
+    justify-content: flex-end;
   }
+}
+
+app-results {
+  margin-top: $header-height;
+  display: block;
 }

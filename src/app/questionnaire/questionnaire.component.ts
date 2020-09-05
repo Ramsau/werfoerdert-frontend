@@ -11,6 +11,7 @@ import { getFormControl } from './question/question.component';
 })
 export class QuestionnaireComponent implements OnInit {
   state: QuestionnaireState;
+  questionsHistory: {[id: number]: any}[] = [];
   questionsAnswered: {[id: number]: any} = {};
   questionsForm = new FormGroup({});
   loading = true;
@@ -34,7 +35,7 @@ export class QuestionnaireComponent implements OnInit {
       // First update controls object
       const controls = state.current_grant.questions.reduce((accumulator, question) => {
         const key = question.id;
-        const value = getFormControl(question);
+        const value = getFormControl(question, this.questionsAnswered);
         Object.assign(accumulator, {[key]: value});
         return accumulator;
       }, {});
@@ -50,27 +51,45 @@ export class QuestionnaireComponent implements OnInit {
     this.loading = false;
   }
 
+  getNextQuestions(): void {
+    this.loading = true;
+
+    // get questions to post from history, not from all answered questions
+    // (already answered questions after which back-button gets clicked are stored in questionsAnswered)
+    const postQuestions = this.questionsHistory.reduce((accumulator, questions) => {
+      Object.assign(accumulator, questions);
+      return accumulator;
+    }, {});
+
+
+    // send answers to api and get next answers
+    const sub = this.questionnaireService.postAnswers(postQuestions)
+      .subscribe(
+        state => {
+          this.updateQuestions(state);
+          sub.unsubscribe();
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
   onNext(): void {
     if (this.questionsForm.valid) {
-      this.loading = true;
+      // push answered questions to history
+      this.questionsHistory.push(this.questionsForm.value);
 
-      // add new answers to list of answered questions
-      Object.assign(this.questionsAnswered, this.questionsForm.value);
-
-      console.log(this.questionsAnswered);
-
-      // send answers to api and get next answers
-      const sub = this.questionnaireService.postAnswers(this.questionsAnswered)
-        .subscribe(
-          state => {
-            this.updateQuestions(state);
-            sub.unsubscribe();
-          },
-          error => {
-            console.log(error);
-          });
+      this.getNextQuestions();
     } else {
       console.log('invalid');
     }
+  }
+
+  onBack(): void {
+    // remove last questions from history (re-take that part)
+    this.questionsHistory = this.questionsHistory.slice(0, -1);
+
+    // re-get questions from server
+    this.getNextQuestions();
   }
 }
