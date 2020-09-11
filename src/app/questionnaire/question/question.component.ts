@@ -27,7 +27,7 @@ import {
     }
   ],
 })
-export class QuestionComponent implements OnInit, AfterViewInit, ControlValueAccessor, Validator {
+export class QuestionComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   private initValue;
   @Input()  question: Question;
   @ViewChild('valueInput') input: ElementRef;
@@ -37,8 +37,9 @@ export class QuestionComponent implements OnInit, AfterViewInit, ControlValueAcc
 
   propagateChange = (_: any) => {};
   onValidationChange: any = () => {};
+  onTouched: any = () => {};
 
-  constructor() {
+  constructor(private element: ElementRef) {
   }
 
   ngOnInit(): void {
@@ -63,6 +64,23 @@ export class QuestionComponent implements OnInit, AfterViewInit, ControlValueAcc
 
   ngAfterViewInit(): void {
     this._setValue(this.initValue);
+
+    new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        const target = mutation.target as HTMLElement;
+        const classList = Array.from(target.classList);
+        try {
+          if (classList.indexOf('ng-touched') > -1 && classList.indexOf('ng-invalid') > -1) {
+            this.element.nativeElement.previousSibling.classList.add('nextInvalid');
+          } else {
+            this.element.nativeElement.previousSibling.classList.remove('nextInvalid');
+          }
+        }
+        catch (TypeError) {}  // if previousSibling doesn't exist
+      });
+    }).observe(this.element.nativeElement, {
+      attributes: true,
+    });
   }
 
   onChange(): void {
@@ -76,6 +94,7 @@ export class QuestionComponent implements OnInit, AfterViewInit, ControlValueAcc
         value = this.input.nativeElement.value;
       }
     }
+    this.onTouched();
     this.propagateChange(value);
     this.onValidationChange();
   }
@@ -89,7 +108,6 @@ export class QuestionComponent implements OnInit, AfterViewInit, ControlValueAcc
   }
 
   writeValue(value: any): void {
-    console.log(value);
     if (this.input) {
       this._setValue(value);
     } else {
@@ -101,23 +119,12 @@ export class QuestionComponent implements OnInit, AfterViewInit, ControlValueAcc
     this.propagateChange = fn;
   }
 
-  registerOnTouched(): void {
+  registerOnTouched(fn): void {
+    this.onTouched = fn;
   }
 
   validate(control: AbstractControl): ValidationErrors {
-    if (this.input) {
-      return this.input.nativeElement.validity;
-    } else {
-      if (this.inputType === 'checkbox') {
-        return null;
-      } else {
-        return {notLoaded: true};
-      }
-    }
-  }
-
-  registerOnValidatorChange?(fn: () => void): void{
-    this.onValidationChange = fn;
+    return null;
   }
 }
 

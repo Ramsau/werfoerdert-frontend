@@ -79,6 +79,9 @@ export class QuestionnaireComponent implements OnInit {
       // push answered questions to history
       this.questionsHistory.push(this.questionsForm.value);
 
+      // update object of all answered questions
+      Object.assign(this.questionsAnswered, this.questionsForm.value);
+
       this.getNextQuestions();
     } else {
       console.log('invalid');
@@ -88,6 +91,9 @@ export class QuestionnaireComponent implements OnInit {
   onBack(): void {
     // remove last questions from history (re-take that part)
     this.questionsHistory = this.questionsHistory.slice(0, -1);
+
+    // update object of all answered questions
+    Object.assign(this.questionsAnswered, this.questionsForm.value);
 
     // re-get questions from server
     this.getNextQuestions();

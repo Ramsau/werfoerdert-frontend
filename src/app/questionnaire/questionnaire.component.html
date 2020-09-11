@@ -14,7 +14,6 @@
       *ngFor="let question of state.current_grant.questions"
       [question]="question"
       [formControlName]="question.id"
-      [(ngModel)]="questionsAnswered[question.id]"
     ></app-question>
 
     <br>
@@ -40,8 +39,10 @@
   <br><br>
 </div>
 
-<app-results
-  *ngIf="showGrantsMet"
-  [state]="state"
->
-</app-results>
+<ng-template [ngIf]="showGrantsMet">
+  <app-results
+    [state]="state"
+  >
+  </app-results>
+  <button class="btn" (click)="showGrantsMet=false; onBack();">Zurück</button>
+</ng-template>

@@ -1,6 +1,7 @@
 @use 'globals' as *;
 
 .btn {
+  @include transition;
   padding: .5em 1em;
   border: none;
   background-color: $grey

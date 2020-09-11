@@ -2,6 +2,7 @@ $primaryColor: #d42026;
 $primaryColorHover: lighten($primaryColor, 10);
 $primaryColorMuted: rgba($primaryColor, .6);
 $secondaryColor: white;
+$errorRed: #e00909;
 $grey: #d0d0d0;
 $lightGrey: #eaeaea;
 
@@ -12,3 +13,14 @@ $font-family: Futura, "Franklin Gothic Medium", Arial, sans-serif;
 $body-margin: 1rem;
 $header-height: 5rem;
 
+$transitionLength: 200ms;
+
+
+
+@mixin transition{
+  $transition: all $transitionLength linear;
+  transition: $transition;
+  -o-transition: $transition;
+  -moz-transition: $transition;
+  -webkit-transition: $transition;
+}

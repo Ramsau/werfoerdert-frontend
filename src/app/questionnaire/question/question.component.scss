@@ -2,6 +2,44 @@
 
 :host {
   display: block;
-  width: 100%;
-  margin-bottom: 1rem;
+  width: auto;
+  padding: 1rem 0.5rem;
+  position: relative;
+}
+
+$questionSeparatorWidth: 1px;
+app-question + :host {
+  border-top: $questionSeparatorWidth solid $grey ;
+}
+
+$questionBorderWidth: 2px;
+$calced: calc(100% - #{$questionBorderWidth});
+.wrongBorders {
+  @include transition;
+  position: absolute;
+  top: -$questionSeparatorWidth;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  background-image: linear-gradient(to bottom, $page-background, $errorRed, $page-background);
+  clip-path: polygon(0 0, 0 100%, $questionBorderWidth 100%, $questionBorderWidth 0, $calced 0, $calced 100%, 100% 100%, 100% 0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+:host.ng-touched.ng-invalid > .wrongBorders {
+  opacity: 1;
+}
+
+app-question.ng-touched.ng-invalid + :host > .wrongBorders {
+  background-image: linear-gradient(to bottom, $errorRed, $page-background);
+}
+
+:host.nextInvalid > .wrongBorders{
+  background-image: linear-gradient(to bottom, $page-background, $errorRed);
+}
+
+app-question.ng-touched.ng-invalid + :host.nextInvalid > .wrongBorders{
+  background: $errorRed;
 }
