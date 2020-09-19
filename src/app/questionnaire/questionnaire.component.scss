@@ -7,14 +7,7 @@
 }
 
 #questionnaire-title {
-  background-color: $primaryColor;
-  color: $secondaryColor;
-  text-align: center;
-  height: $header-height;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  @include header;
 }
 
 #form-wrapper {

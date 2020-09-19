@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {QuestionnaireState} from '../grant.model';
+import {QuestionnaireState} from '../../shared/grant.model';
 
 @Component({
   selector: 'app-results',

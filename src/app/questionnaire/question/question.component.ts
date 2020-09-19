@@ -1,13 +1,12 @@
 import {AfterViewInit, Component, ElementRef, forwardRef, Input, OnInit, ViewChild} from '@angular/core';
-import {Question} from './question.model';
+import {Question} from '../../shared/question.model';
 import {
-  AbstractControl,
   ControlValueAccessor,
   FormControl,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ValidationErrors,
-  Validator, Validators
+  Validators
 } from '@angular/forms';
 
 @Component({
@@ -123,7 +122,8 @@ export class QuestionComponent implements OnInit, AfterViewInit, ControlValueAcc
     this.onTouched = fn;
   }
 
-  validate(control: AbstractControl): ValidationErrors {
+  validate(): ValidationErrors {
+    // real validation gets done elsewhere
     return null;
   }
 }

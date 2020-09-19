@@ -24,3 +24,14 @@ $transitionLength: 200ms;
   -moz-transition: $transition;
   -webkit-transition: $transition;
 }
+
+@mixin header{
+  background-color: $primaryColor;
+  color: $secondaryColor;
+  text-align: center;
+  height: $header-height;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}

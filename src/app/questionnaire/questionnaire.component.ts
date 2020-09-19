@@ -1,6 +1,6 @@
 import {Component, OnInit } from '@angular/core';
 import { QuestionnaireService } from './questionnaire.service';
-import { QuestionnaireState} from './grant.model';
+import { QuestionnaireState} from '../shared/grant.model';
 import { FormGroup } from '@angular/forms';
 import { getFormControl } from './question/question.component';
 

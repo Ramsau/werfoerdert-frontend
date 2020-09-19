@@ -1,0 +1,5 @@
+@use '../../style/globals' as *;
+
+#admin-title{
+  @include header;
+}

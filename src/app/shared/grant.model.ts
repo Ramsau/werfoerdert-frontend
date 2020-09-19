@@ -1,4 +1,4 @@
-import { Question } from './question/question.model';
+import { Question } from './question.model';
 
 export interface Grant{
   id: number;

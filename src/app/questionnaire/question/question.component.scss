@@ -13,7 +13,7 @@ app-question + :host {
 }
 
 $questionBorderWidth: 2px;
-$calced: calc(100% - #{$questionBorderWidth});
+$calculated: calc(100% - #{$questionBorderWidth});
 .wrongBorders {
   @include transition;
   position: absolute;
@@ -23,7 +23,7 @@ $calced: calc(100% - #{$questionBorderWidth});
   right: 0;
   z-index: 1;
   background-image: linear-gradient(to bottom, $page-background, $errorRed, $page-background);
-  clip-path: polygon(0 0, 0 100%, $questionBorderWidth 100%, $questionBorderWidth 0, $calced 0, $calced 100%, 100% 100%, 100% 0);
+  clip-path: polygon(0 0, 0 100%, $questionBorderWidth 100%, $questionBorderWidth 0, $calculated 0, $calculated 100%, 100% 100%, 100% 0);
   opacity: 0;
   pointer-events: none;
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { QuestionnaireState } from './grant.model';
+import { QuestionnaireState } from '../shared/grant.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
