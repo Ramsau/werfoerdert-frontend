@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Question} from '../shared/question.model';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {Grant} from '../shared/grant.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,4 +21,16 @@ export class AdminService {
       });
     });
   }
+
+  getGrants(): Observable<Grant[]>{
+    return new Observable<Grant[]>(subscriber => {
+      const sub = this.httpClient.get(
+        '/api/admin/get_grants/',
+      ).subscribe((grants: Grant[]) => {
+        subscriber.next(grants);
+        sub.unsubscribe();
+      });
+    });
+  }
 }
+
