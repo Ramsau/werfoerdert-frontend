@@ -12,6 +12,9 @@ import {routing} from './app.routes';
 import { IndexComponent } from './index/index.component';
 import { ResultsComponent } from './questionnaire/results/results.component';
 import { AdminComponent } from './admin/admin.component';
+import { AdminGrantsComponent } from './admin/admin-grants/admin-grants.component';
+import { AdminQuestionsComponent } from './admin/admin-questions/admin-questions.component';
+import { AdminGrantComponent } from './admin/admin-grants/admin-grant/admin-grant.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { AdminComponent } from './admin/admin.component';
     LoadingComponent,
     IndexComponent,
     ResultsComponent,
-    AdminComponent
+    AdminComponent,
+    AdminGrantsComponent,
+    AdminQuestionsComponent,
+    AdminGrantComponent,
   ],
   imports: [
     BrowserModule,

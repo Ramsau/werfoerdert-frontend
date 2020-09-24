@@ -17,7 +17,7 @@ $transitionLength: 200ms;
 
 
 
-@mixin transition{
+@mixin transition {
   $transition: all $transitionLength linear;
   transition: $transition;
   -o-transition: $transition;
@@ -25,7 +25,7 @@ $transitionLength: 200ms;
   -webkit-transition: $transition;
 }
 
-@mixin header{
+@mixin header {
   background-color: $primaryColor;
   color: $secondaryColor;
   text-align: center;

@@ -8,6 +8,7 @@ export interface Grant{
   parent: Grant;
   expires: Date;
   questions: Question[];
+  children: Grant[];
 }
 
 

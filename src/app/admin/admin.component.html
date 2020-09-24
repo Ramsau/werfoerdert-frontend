@@ -2,11 +2,6 @@
   <h1>Adminseite</h1>
 </div>
 
-
-<p *ngFor="let question of questions">
-  {{ question.text_de }}
-</p>
-
-<p *ngFor="let grant of grants">
-  {{ grant.name_de }}
-</p>
+<div id="admin-wrapper">
+  <router-outlet></router-outlet>
+</div>

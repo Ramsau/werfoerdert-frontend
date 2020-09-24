@@ -3,3 +3,7 @@
 #admin-title{
   @include header;
 }
+
+#admin-wrapper {
+  margin-top: $header-height;
+}

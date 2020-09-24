@@ -1,0 +1,8 @@
+@use '../../../../style/globals' as *;
+
+
+app-admin-grant{
+  padding-left: 1em;
+  display: block;
+  border-left: 1px solid $grey;
+}
