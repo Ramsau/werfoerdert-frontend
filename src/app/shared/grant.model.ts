@@ -1,4 +1,5 @@
-import { Question } from './question.model';
+import { Question, Requirement } from './question.model';
+
 
 export interface Grant{
   id: number;
@@ -9,7 +10,10 @@ export interface Grant{
   expires: Date;
   questions: Question[];
   children: Grant[];
+  requirements: Requirement[];
 }
+
+
 
 
 export interface QuestionnaireState{

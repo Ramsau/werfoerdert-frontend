@@ -1,7 +1,12 @@
 <div>
-  {{ grant.name_de }}
-  <app-admin-grant
-    *ngFor="let childGrant of grant.children"
-    [grant]="childGrant"
-  ></app-admin-grant>
+  <button type="button" class="collapsible">{{ grant.name_de }}</button>
+  <div class="content">
+    <p *ngFor="let requirement of grant.requirements">{{ requirement.question }}</p>
+    <app-admin-grant
+      *ngFor="let childGrant of grant.children"
+      [grant]="childGrant"
+    ></app-admin-grant>
+  </div>
 </div>
+
+

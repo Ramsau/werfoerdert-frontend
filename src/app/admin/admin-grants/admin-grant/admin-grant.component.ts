@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import { Grant } from '../../../shared/grant.model';
+
 
 @Component({
   selector: 'app-admin-grant',
@@ -8,10 +9,25 @@ import { Grant } from '../../../shared/grant.model';
 })
 export class AdminGrantComponent implements OnInit {
   @Input() grant: Grant;
+  @ViewChild('.collapsible') collapseButton: ElementRef;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
+
+  }
+
+  onClick(): void {
+
+    this.collapseButton.nativeElement.classList.toggle('active');
+    const content = this.collapseButton.nativeElement.nextElementSibling;
+    if (content.style.maxHeight) {
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + 'px';
+    }
+
   }
 
 }
