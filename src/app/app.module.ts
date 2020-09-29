@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
@@ -15,6 +15,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminGrantsComponent } from './admin/admin-grants/admin-grants.component';
 import { AdminQuestionsComponent } from './admin/admin-questions/admin-questions.component';
 import { AdminGrantComponent } from './admin/admin-grants/admin-grant/admin-grant.component';
+import { HeroesComponent } from './heroes/heroes.component';
 
 @NgModule({
   declarations: [
@@ -28,14 +29,16 @@ import { AdminGrantComponent } from './admin/admin-grants/admin-grant/admin-gran
     AdminGrantsComponent,
     AdminQuestionsComponent,
     AdminGrantComponent,
+    HeroesComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    routing,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        routing,
+        FormsModule,
+    ],
   providers: [HttpClient ],
   bootstrap: [AppComponent]
 })

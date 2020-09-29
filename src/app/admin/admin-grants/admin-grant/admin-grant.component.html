@@ -2,9 +2,35 @@
   <button
     type="button"
     class="collapsible"
+    (click)=onClick()
   >{{ grant.name_de }}</button>
   <div class="content" #collapseContent>
     <p *ngFor="let requirement of grant.requirements">{{ requirement.question }}</p>
+    <button
+      type="button"
+      class="add_Question_button"
+      (click)=onClick_addQ()>
+        Add Question
+    </button>
+    <div class="addQuestion_form" #collapseQuestion>
+      <form (ngSubmit)="onAddQ()" class="formQuestions">
+        <div style="width:100%">
+          <input type="text" id="text_de" class="inputfields" name="text_de" placeholder="Frage auf Deutsch:">
+          <input type="text" id="text_en" class="inputfields" name="text_en" placeholder="Frage auf Englisch:">
+        </div>
+        <div style="margin-left:28px;">
+          <div class="dropdown">
+            <button class="dropdown_qt">Questiontype</button>
+            <div class="dropdown-content">
+              <button type="button" class="dropdown_button">Test1</button>
+              <button type="button" class="dropdown_button">Test2</button>
+              <button type="button" class="dropdown_button">Test3</button>
+            </div>
+          </div>
+          <button  style="float: right;" type="button" class="submit_button" name="submitButton">Submit</button>
+        </div>
+      </form>
+    </div>
     <app-admin-grant
       *ngFor="let childGrant of grant.children"
       [grant]="childGrant"
