@@ -9,7 +9,7 @@ import { Grant } from '../../../shared/grant.model';
 })
 export class AdminGrantComponent implements OnInit {
   @Input() grant: Grant;
-  @ViewChild('.collapsible') collapseButton: ElementRef;
+  @ViewChild('collapseContent') collapseContent: ElementRef;
 
   constructor() {
   }
@@ -19,15 +19,7 @@ export class AdminGrantComponent implements OnInit {
   }
 
   onClick(): void {
-
-    this.collapseButton.nativeElement.classList.toggle('active');
-    const content = this.collapseButton.nativeElement.nextElementSibling;
-    if (content.style.maxHeight) {
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + 'px';
-    }
-
+    this.collapseContent.nativeElement.classList.toggle('active');
   }
 
 }

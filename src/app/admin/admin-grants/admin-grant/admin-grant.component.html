@@ -1,6 +1,9 @@
 <div>
-  <button type="button" class="collapsible">{{ grant.name_de }}</button>
-  <div class="content">
+  <button
+    type="button"
+    class="collapsible"
+  >{{ grant.name_de }}</button>
+  <div class="content" #collapseContent>
     <p *ngFor="let requirement of grant.requirements">{{ requirement.question }}</p>
     <app-admin-grant
       *ngFor="let childGrant of grant.children"

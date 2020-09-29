@@ -8,8 +8,8 @@ app-admin-grant{
 }
 
 .collapsible{
-  background-color: #eee;
-  color: #444;
+  background-color: $page-background;
+  color: $font-color;
   cursor: pointer;
   padding: 18px;
   width: 100%;
@@ -19,15 +19,18 @@ app-admin-grant{
   font-size: 15px;
 }
 
-.active, .collapsible:hover {
-  background-color: #ccc;
+.collapsible:hover {
+  background-color: $lightGrey;
 }
 
 .content {
   padding: 0 18px;
   display: none;
-  overflow: hidden;
-  background-color: #f1f1f1;
+  overflow: hidden
+}
+
+.content.active {
+  display: block;
 }
 
 
