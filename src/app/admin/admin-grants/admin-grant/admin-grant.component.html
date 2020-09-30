@@ -7,7 +7,7 @@
   <div class="content" #collapseContent>
     <p *ngFor="let requirement of grant.requirements">
       <app-loading *ngIf="questionsLoading"></app-loading>
-      <span *ngIf="!questionsLoading">{{requirement.question}}{{questionsLoading}}</span>
+      <span *ngIf="!questionsLoading">{{ requirement.question }}</span>
     </p>
     <button
       type="button"
@@ -26,12 +26,19 @@
             <option>3</option>
           </select>
         </div>
-          <button  style="float: right;" type="button" class="submit_button" name="submitButton">Submit</button>
+          <button
+            style="float: right;"
+            type="button"
+            class="submit_button"
+            name="submitButton"
+            (click)="onAddQ()"
+          >Submit</button>
       </form>
     </div>
     <app-admin-grant
       *ngFor="let childGrant of grant.children"
       [grant]="childGrant"
+      [questionsLoading]="questionsLoading"
     ></app-admin-grant>
   </div>
 </div>

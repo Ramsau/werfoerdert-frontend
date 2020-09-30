@@ -21,7 +21,7 @@ export class AdminService {
             sub.unsubscribe();
           });
         },
-        100000);
+        3000);
     });
   }
 
@@ -36,4 +36,3 @@ export class AdminService {
     });
   }
 }
-
