@@ -13,15 +13,12 @@ export class AdminService {
 
   getQuestions(): Observable<Question[]> {
     return new Observable<Question[]>( subscriber => {
-      setTimeout(() => {
-          const sub = this.httpClient.get(
-            '/api/admin/get_questions/',
-          ).subscribe((questions: Question[]) => {
-            subscriber.next(questions);
-            sub.unsubscribe();
-          });
-        },
-        3000);
+      const sub = this.httpClient.get(
+        '/api/admin/get_questions/',
+      ).subscribe((questions: Question[]) => {
+        subscriber.next(questions);
+        sub.unsubscribe();
+      });
     });
   }
 
