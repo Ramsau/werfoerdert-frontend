@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Grant } from '../../shared/grant.model';
 import { AdminService } from '../admin.service';
+import {Question} from '../../shared/question.model';
 
 
 @Component({
@@ -10,7 +11,8 @@ import { AdminService } from '../admin.service';
 })
 export class AdminGrantsComponent implements OnInit {
   grants: Grant[];
-
+  questions: Question[];
+  questionLoading = true;
   constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
@@ -23,6 +25,15 @@ export class AdminGrantsComponent implements OnInit {
         console.log(error);
       }
     );
+    const subQ = this.adminService.getQuestions().subscribe(
+      questions => {
+        this.questions = questions;
+        subQ.unsubscribe();
+        this.questionLoading = false;
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
-
 }

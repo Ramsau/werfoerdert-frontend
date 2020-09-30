@@ -1,5 +1,9 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Injectable, Input, OnInit, ViewChild} from '@angular/core';
 import { Grant } from '../../../shared/grant.model';
+import get = Reflect.get;
+import {Question} from '../../../shared/question.model';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-admin-grant',
@@ -8,6 +12,7 @@ import { Grant } from '../../../shared/grant.model';
 })
 export class AdminGrantComponent implements OnInit {
   @Input() grant: Grant;
+  @Input() questionsLoading: boolean;
   @ViewChild('collapseContent') collapseContent: ElementRef;
   @ViewChild('collapseQuestion') collapseQuestion: ElementRef;
 
@@ -29,6 +34,7 @@ export class AdminGrantComponent implements OnInit {
   onAddQ(): void{
 
   }
+
 }
 
 

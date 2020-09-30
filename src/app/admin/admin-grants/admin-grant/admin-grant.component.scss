@@ -41,7 +41,7 @@ app-admin-grant{
   padding: 18px;
   display: none;
   overflow: hidden;
-  background-color: $lightGrey;
+  background-color: $page-background;
   margin: 5px;
 }
 
@@ -75,6 +75,8 @@ app-admin-grant{
   margin: 2px;
   height: 30px;
   font-size: 15px;
+  border: 2px solid $lightGrey;
+  background-color: $page-background;
 
 }
 
@@ -83,12 +85,13 @@ app-admin-grant{
   color: $font-color;
   cursor: pointer;
   border:  2px solid $page-background;
-  text-align: left;
+  text-align: center;
   outline: none;
   font-size: 15px;
-  height: 33px;
   margin: 2px;
-  width: 100%;
+  width: 100px;
+  margin-left: 20px;
+
 }
 
 .submit_button:hover {

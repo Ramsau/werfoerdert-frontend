@@ -1,5 +1,8 @@
 <div *ngFor="let grant of grants">
+  {{questionLoading}}
   <app-admin-grant
     [grant]="grant"
-  ></app-admin-grant>
+    [questionsLoading]="questionLoading"
+  >
+  </app-admin-grant>
 </div>
