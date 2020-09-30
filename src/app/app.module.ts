@@ -15,7 +15,6 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminGrantsComponent } from './admin/admin-grants/admin-grants.component';
 import { AdminQuestionsComponent } from './admin/admin-questions/admin-questions.component';
 import { AdminGrantComponent } from './admin/admin-grants/admin-grant/admin-grant.component';
-import { HeroesComponent } from './heroes/heroes.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +28,6 @@ import { HeroesComponent } from './heroes/heroes.component';
     AdminGrantsComponent,
     AdminQuestionsComponent,
     AdminGrantComponent,
-    HeroesComponent,
   ],
     imports: [
         BrowserModule,
