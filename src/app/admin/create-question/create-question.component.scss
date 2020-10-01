@@ -1,0 +1,30 @@
+@use '../../../style/globals' as *;
+
+.inputfields{
+  width: 100%;
+  margin: 2px;
+  height: 30px;
+  font-size: 15px;
+  border: 2px solid $lightGrey;
+  background-color: $page-background;
+}
+
+.submit_button{
+  background-color: $lightGrey;
+  color: $font-color;
+  cursor: pointer;
+  border:  2px solid $page-background;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+  margin: 2px;
+  width: 100px;
+  margin-left: 20px;
+  height: 100%;
+
+}
+
+.submit_button:hover {
+  background-color: $page-background;
+  border: 2px solid $lightGrey;
+}

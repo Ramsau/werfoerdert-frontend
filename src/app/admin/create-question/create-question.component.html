@@ -1,0 +1,19 @@
+<form style="display: flex" (ngSubmit)="onQuestionAdd()" #questionAddForm="ngForm">
+  <div style="width:90%;" >
+    <input type="text" id="text_de" [(ngModel)]="model.textDe" class="inputfields" name="text_de" placeholder="Frage auf Deutsch:" value="">
+    <input type="text" id="text_en" [(ngModel)]="model.textEn" class="inputfields" name="text_en" placeholder="Frage auf Englisch:" value="">
+    <select [(ngModel)]="model.questionType" class="inputfields" name = "questiontype" id="questiontype" value="">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+    </select>
+  </div>
+  <div>
+    <button
+      style="float: right;"
+      type="submit"
+      class="submit_button"
+      name="submitButton"
+    >Submit</button>
+  </div>
+</form>

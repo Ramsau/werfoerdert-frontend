@@ -7,7 +7,7 @@
   <div class="content" #collapseContent>
     <p *ngFor="let requirement of grant.requirements">
       <app-loading *ngIf="questionsLoading"></app-loading>
-      <span *ngIf="!questionsLoading">filler-text</span>
+      <span *ngIf="!questionsLoading">{{requirement.question}}</span>
     </p>
     <button
       type="button"
@@ -16,7 +16,7 @@
         Add Question
     </button>
     <div class="addQuestion_form" #collapseQuestion>
-      <form (ngSubmit)="onAddQ()" class="formQuestions">
+      <form class="formQuestions">
         <div style="width:100%">
           <input type="text" id="text_de" class="inputfields" name="text_de" placeholder="Frage auf Deutsch:">
           <input type="text" id="text_en" class="inputfields" name="text_en" placeholder="Frage auf Englisch:">
@@ -31,7 +31,6 @@
             type="button"
             class="submit_button"
             name="submitButton"
-            (click)="onAddQ()"
           >Submit</button>
       </form>
     </div>

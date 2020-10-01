@@ -25,10 +25,6 @@ export class AdminGrantComponent implements OnInit {
   onClick_addQ(): void {
     this.collapseQuestion.nativeElement.classList.toggle('active_addQ');
   }
-
-  onAddQ(): void{
-  }
-
 }
 
 

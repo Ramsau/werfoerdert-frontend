@@ -25,4 +25,7 @@ export class AdminQuestionsComponent implements OnInit {
     );
   }
 
+  onCreateQuestion(question: unknown): void {
+    console.log(question);
+  }
 }
