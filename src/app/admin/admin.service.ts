@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Question} from '../shared/question.model';
-import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
-import {Grant} from '../shared/grant.model';
+import { Observable} from 'rxjs';
+import { HttpClient} from '@angular/common/http';
+import { Grant} from '../shared/grant.model';
 
 @Injectable({
   providedIn: 'root'

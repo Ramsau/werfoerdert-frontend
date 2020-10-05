@@ -11,7 +11,7 @@ export class CreateQuestionComponent implements OnInit {
 
   constructor() { }
 
-  model: {id: number, textDe: string, textEn: string, questionType: number};
+  model = {id: number, textDe: string, textEn: string, questionType: number};
 
   ngOnInit(): void {
   }
