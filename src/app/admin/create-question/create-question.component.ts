@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {AdminService} from '../admin.service';
 
 @Component({
   selector: 'app-create-question',
@@ -11,7 +12,7 @@ export class CreateQuestionComponent implements OnInit {
 
   constructor() { }
 
-  model = {id: number, textDe: string, textEn: string, questionType: number};
+  model = {textDe: null, textEn: null, questionType: null};
 
   ngOnInit(): void {
   }

@@ -17,4 +17,3 @@ export interface Requirement {
   grant_id: number;
   question: number;
 }
-

@@ -10,7 +10,6 @@ import {Question} from '../../shared/question.model';
 export class AdminQuestionsComponent implements OnInit {
   questions: Question[];
 
-
   constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
@@ -26,6 +25,11 @@ export class AdminQuestionsComponent implements OnInit {
   }
 
   onCreateQuestion(question: unknown): void {
-    console.log(question);
+    const postQ = this.adminService.postQuestion(question).subscribe(
+      returnQuestion => {
+        this.questions.push(returnQuestion);
+
+      }
+    );
   }
 }
