@@ -1,4 +1,6 @@
 <app-create-question (createQuestion)="onCreateQuestion($event)"></app-create-question>
-<p *ngFor="let question of questions">
-  {{ question.text_de }}
-</p>
+<div *ngFor="let question of questions">
+  <p>
+    {{ question.text_de }}
+  </p>
+</div>

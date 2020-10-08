@@ -5,7 +5,7 @@ import {Question} from '../../shared/question.model';
 @Component({
   selector: 'app-admin-questions',
   templateUrl: './admin-questions.component.html',
-  styleUrls: ['./admin-questions.component.scss']
+  styleUrls: ['./admin-questions.component.scss', ]
 })
 export class AdminQuestionsComponent implements OnInit {
   questions: Question[];
@@ -27,6 +27,7 @@ export class AdminQuestionsComponent implements OnInit {
   onCreateQuestion(question: unknown): void {
     const postQ = this.adminService.postQuestion(question).subscribe(
       returnQuestion => {
+        console.log(returnQuestion);
         this.questions.push(returnQuestion);
 
       }
