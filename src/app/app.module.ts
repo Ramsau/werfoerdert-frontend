@@ -8,15 +8,14 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
 import { QuestionComponent } from './questionnaire/question/question.component';
 import {HttpClient, HttpClientModule, } from '@angular/common/http';
 import { LoadingComponent } from './shared/loading/loading.component';
-import {routing} from './app.routes';
+import { routing } from './app.routes';
 import { IndexComponent } from './index/index.component';
 import { ResultsComponent } from './questionnaire/results/results.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminGrantsComponent } from './admin/admin-grants/admin-grants.component';
 import { AdminQuestionsComponent } from './admin/admin-questions/admin-questions.component';
 import { AdminGrantComponent } from './admin/admin-grants/admin-grant/admin-grant.component';
-import {CreateQuestionComponent} from './admin/create-question/create-question.component';
-
+import { CreateQuestionComponent } from './admin/create-question/create-question.component';
 
 @NgModule({
   declarations: [

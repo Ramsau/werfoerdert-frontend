@@ -1,5 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {AdminService} from '../admin.service';
+import {Component, EventEmitter, NgModule, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-create-question',

@@ -1,0 +1,16 @@
+.edit{
+  display: none;
+}
+.mouseover{
+  display: flex;
+
+}
+
+.mouseover:hover .edit{
+  display: block;
+}
+
+.editsymbol_placeholder{
+  width: 35px;
+}
+

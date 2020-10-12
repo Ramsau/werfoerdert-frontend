@@ -1,6 +1,11 @@
 <app-create-question (createQuestion)="onCreateQuestion($event)"></app-create-question>
-<div *ngFor="let question of questions">
-  <p>
-    {{ question.text_de }}
-  </p>
+<div *ngFor="let question of questions" class="mouseover">
+  <div class="editsymbol_placeholder">
+    <i class="fas fa-edit edit" style="margin:16px; margin-right: 0;" (click)="onQuestionEdit($event)"></i>
+  </div>
+  <div>
+    <p style="margin: 16px; margin-right: 0;">
+      {{ question.text_de }}
+    </p>
+  </div>
 </div>
