@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, Input} from '@angular/core';
 import { AdminService } from '../admin.service';
 import {Question} from '../../shared/question.model';
 
@@ -9,8 +9,10 @@ import {Question} from '../../shared/question.model';
 })
 export class AdminQuestionsComponent implements OnInit {
   questions: Question[];
+  @ViewChild('collapseQuestionEdit') collapseQuestionEdit: ElementRef;
 
-  constructor(private adminService: AdminService) { }
+  constructor(private adminService: AdminService) {
+  }
 
   ngOnInit(): void {
     const subQ = this.adminService.getQuestions().subscribe(
@@ -27,9 +29,19 @@ export class AdminQuestionsComponent implements OnInit {
   onCreateQuestion(question: unknown): void {
     const postQ = this.adminService.postQuestion(question).subscribe(
       returnQuestion => {
-        console.log(returnQuestion);
         this.questions.push(returnQuestion);
+      }
+    );
+  }
 
+  onQuestionEditCollapsible(question): void {
+    question.is_edit = !(question.is_edit === true);
+  }
+
+  onQuestionEdit(question: unknown): void {
+    this.adminService.postQuestion(question).subscribe(
+      returnQuestion => {
+        this.questions.push(returnQuestion);
       }
     );
   }

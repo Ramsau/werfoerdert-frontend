@@ -1,16 +1,12 @@
 @use '../../../../style/globals' as *;
 
-
 app-admin-grant{
   padding-left: 1em;
   display: block;
   border-left: 1px solid $grey;
 }
-.dropdown_button{
-  border: none;
-  width: 108px;
-}
 
+//Shows Requirements of Grant
 .collapsible{
   background-color: $page-background;
   color: $font-color;
@@ -22,33 +18,21 @@ app-admin-grant{
   outline: none;
   font-size: 15px;
 }
-
 .collapsible:hover {
   background-color: $lightGrey;
 }
 
+//Grant Requirements(Questions)
 .content {
   padding: 0 18px;
   display: none;
   overflow: hidden;
 }
-
 .content.active {
   display: block;
 }
 
-.addQuestion_form {
-  padding: 18px;
-  display: none;
-  overflow: hidden;
-  background-color: $page-background;
-  margin: 5px;
-}
-
-.addQuestion_form.active_addQ {
-  display: block;
-}
-
+//Shows "addQuestionForm"
 .add_Question_button{
   background-color: $lightGrey;
   color: $font-color;
@@ -60,16 +44,29 @@ app-admin-grant{
   font-size: 15px;
   margin-left: 18px;
 }
-
 .add_Question_button:hover {
   background-color: $page-background;
   border: 2px solid $lightGrey;
 }
 
+//Form for adding a Question("<div>")
+.addQuestion_form {
+  padding: 18px;
+  display: none;
+  overflow: hidden;
+  background-color: $page-background;
+  margin: 5px;
+}
+.addQuestion_form.active_addQ {
+  display: block;
+}
+
+//Form for adding a Question("<form>")
 .formQuestions {
   display: flex;
 }
 
+//Input Fields in Add Question Form
 .inputfields{
   width: 100%;
   margin: 2px;
@@ -80,6 +77,7 @@ app-admin-grant{
 
 }
 
+//Submit Buttons in Add Question Form
 .submit_button{
   background-color: $lightGrey;
   color: $font-color;
@@ -91,52 +89,10 @@ app-admin-grant{
   margin: 2px;
   width: 100px;
   margin-left: 20px;
-
 }
-
 .submit_button:hover {
   background-color: $page-background;
   border: 2px solid $lightGrey;
-}
-
-.dropdown_qt{
-  background-color: $lightGrey;
-  color: $font-color;
-  cursor: pointer;
-  border:  2px solid $page-background;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-  height: 33px;
-  margin: 2px;
-  float: right;
-  width: 100%;
-}
-
-.dropdown_qt:hover {
-  background-color: $page-background;
-  border: 2px solid $lightGrey;
-}
-
-input{
-  border:none;
-}
-
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: $page-background;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  width: 108px;
-  font-size: 15px;
-  padding: 4px;
-
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
 }
 
 

@@ -1,8 +1,8 @@
 <form style="display: flex" (ngSubmit)="onQuestionAdd()" #questionAddForm="ngForm">
   <div style="width:90%;" >
-    <input type="text" id="text_de" [(ngModel)]="model.textDe" class="inputfields" name="text_de" placeholder="Frage auf Deutsch:" value="">
-    <input type="text" id="text_en" [(ngModel)]="model.textEn" class="inputfields" name="text_en" placeholder="Frage auf Englisch:" value="">
-    <select [(ngModel)]="model.questionType" class="inputfields" name = "questiontype" id="questiontype" value="">
+    <input type="text" id="text_de" [(ngModel)]="model.textDe" class="inputfields" name="text_de" placeholder="Frage auf Deutsch:">
+    <input type="text" id="text_en" [(ngModel)]="model.textEn" class="inputfields" name="text_en" placeholder="Frage auf Englisch:">
+    <select [(ngModel)]="model.questionType" class="inputfields" name = "questiontype" id="questiontype">
       <option>1</option>
       <option>2</option>
       <option>3</option>
