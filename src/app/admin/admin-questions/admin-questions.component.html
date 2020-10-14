@@ -1,13 +1,19 @@
 <app-create-question (createQuestion)="onCreateQuestion($event)"></app-create-question>
 <div *ngFor="let question of questions" class="mouseover">
-  <div class="editsymbol_placeholder">
-    <i class="fas fa-edit edit" style="margin:16px; margin-right: 0;" (click)="onQuestionEditCollapsible(question)"></i>
+  <div style="display: flex; width: 100%">
+    <div class="symbol_placeholder">
+      <fa-icon [icon]="faTrash" class="edit" style="margin:16px; margin-right: 0;" (click)="onDeleteQuestion(question)" ></fa-icon>
+    </div>
+    <div class="symbol_placeholder">
+      <fa-icon [icon]="faEdit" class="edit" style="margin:16px; margin-right: 0;" (click)="onQuestionEditCollapsible(question)"></fa-icon>
+    </div>
+    <div>
+      <p style="margin: 16px; margin-right: 0;">
+        {{ question.text_de }}
+      </p>
+    </div>
   </div>
   <div>
-    <p style="margin: 16px; margin-right: 0;">
-      {{ question.text_de }}
-    </p>
+    <app-create-question *ngIf="question.is_edit" (createQuestion)=onQuestionEdit($event) [textDE]="question.text_de" [textEN]="question.text_en" [questiontype]="question.type" [id]="question.id"></app-create-question>
   </div>
-  <app-create-question *ngIf="question.is_edit" (createQuestion)=onQuestionEdit($event) [textDE]="question.text_de" [textEN]="question.text_en" [questiontype]="question.type" [id]="question.id"></app-create-question>
-
 </div>

@@ -33,15 +33,29 @@ export class AdminService {
     });
   }
 
-  postQuestion(question): Observable<Question> {
-    return new Observable<Question>( subscriber => {
+  postQuestion(question): Observable<Question[]> {
+    return new Observable<Question[]>( subscriber => {
        const sub = this.httpClient.post<Question>(
         '/api/admin/post_question/',
         question,
-      ).subscribe((questionReturn: Question) => {
-        subscriber.next(questionReturn);
+      ).subscribe((questionsReturn: any) => {
+        // post_question returns Array of all Questions
+        subscriber.next(questionsReturn);
         sub.unsubscribe();
       });
     });
   }
+
+ deleteQuestion(question): Observable<Question[]>{
+  return new Observable<Question[]>( subscriber => {
+    const sub = this.httpClient.post<Question>(
+      '/api/admin/post_question/',
+      question,
+    ).subscribe((questionsReturn: any) => {
+      // post_question returns Array of all Questions
+      subscriber.next(questionsReturn);
+      sub.unsubscribe();
+    });
+  });
+ }
 }

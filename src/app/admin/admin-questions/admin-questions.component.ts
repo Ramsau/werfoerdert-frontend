@@ -1,6 +1,9 @@
 import {Component, ElementRef, OnInit, ViewChild, Input} from '@angular/core';
 import { AdminService } from '../admin.service';
 import {Question} from '../../shared/question.model';
+import {faTrash, faEdit} from '@fortawesome/free-solid-svg-icons';
+
+
 
 @Component({
   selector: 'app-admin-questions',
@@ -10,6 +13,9 @@ import {Question} from '../../shared/question.model';
 export class AdminQuestionsComponent implements OnInit {
   questions: Question[];
   @ViewChild('collapseQuestionEdit') collapseQuestionEdit: ElementRef;
+
+  faEdit = faEdit;
+  faTrash = faTrash;
 
   constructor(private adminService: AdminService) {
   }
@@ -28,8 +34,8 @@ export class AdminQuestionsComponent implements OnInit {
 
   onCreateQuestion(question: unknown): void {
     const postQ = this.adminService.postQuestion(question).subscribe(
-      returnQuestion => {
-        this.questions.push(returnQuestion);
+      returnQuestions => {
+        this.questions = returnQuestions.slice();
       }
     );
   }
@@ -40,8 +46,16 @@ export class AdminQuestionsComponent implements OnInit {
 
   onQuestionEdit(question: unknown): void {
     this.adminService.postQuestion(question).subscribe(
-      returnQuestion => {
-        this.questions.push(returnQuestion);
+      returnQuestions => {
+        this.questions = returnQuestions.slice();
+      }
+    );
+  }
+
+  onDeleteQuestion(question): void {
+    this.adminService.deleteQuestion(question).subscribe(
+      returnQuestions => {
+        this.questions = returnQuestions.slice();
       }
     );
   }
