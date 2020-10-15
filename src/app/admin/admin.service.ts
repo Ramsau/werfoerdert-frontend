@@ -49,7 +49,7 @@ export class AdminService {
  deleteQuestion(question): Observable<Question[]>{
   return new Observable<Question[]>( subscriber => {
     const sub = this.httpClient.post<Question>(
-      '/api/admin/post_question/',
+      '/api/admin/delete_question/',
       question,
     ).subscribe((questionsReturn: any) => {
       // post_question returns Array of all Questions
