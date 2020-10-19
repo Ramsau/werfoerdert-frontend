@@ -36,6 +36,9 @@ export class AdminQuestionsComponent implements OnInit {
     const postQ = this.adminService.postQuestion(question).subscribe(
       returnQuestions => {
         this.questions = returnQuestions.slice();
+      },
+      error => {
+        console.log(error);
       }
     );
   }
@@ -48,6 +51,9 @@ export class AdminQuestionsComponent implements OnInit {
     this.adminService.postQuestion(question).subscribe(
       returnQuestions => {
         this.questions = returnQuestions.slice();
+      },
+      error => {
+        console.log(error);
       }
     );
   }
@@ -56,6 +62,9 @@ export class AdminQuestionsComponent implements OnInit {
     this.adminService.deleteQuestion(question).subscribe(
       returnQuestions => {
         this.questions = returnQuestions.slice();
+      },
+      error => {
+        console.log(error);
       }
     );
   }

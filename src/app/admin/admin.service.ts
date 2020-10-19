@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Question } from '../shared/question.model';
-import { Observable } from 'rxjs';
+import { Question, Error } from '../shared/question.model';
+import { Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Grant } from '../shared/grant.model';
 
@@ -18,7 +18,11 @@ export class AdminService {
       ).subscribe((questions: Question[]) => {
         subscriber.next(questions);
         sub.unsubscribe();
-      });
+      },
+        error => {
+          subscriber.error(error);
+        }
+    );
     });
   }
 
@@ -29,7 +33,11 @@ export class AdminService {
       ).subscribe((grants: Grant[]) => {
         subscriber.next(grants);
         sub.unsubscribe();
-      });
+      },
+        error => {
+          subscriber.error(error);
+        }
+      );
     });
   }
 
@@ -38,11 +46,16 @@ export class AdminService {
        const sub = this.httpClient.post<Question>(
         '/api/admin/post_question/',
         question,
-      ).subscribe((questionsReturn: any) => {
-        // post_question returns Array of all Questions
-        subscriber.next(questionsReturn);
-        sub.unsubscribe();
-      });
+      ).subscribe(
+        (questionsReturn: any) => {
+          // post_question returns Array of all Questions
+          subscriber.next(questionsReturn);
+          sub.unsubscribe();
+        },
+        error => {
+          subscriber.error(error);
+        }
+      );
     });
   }
 
@@ -55,7 +68,11 @@ export class AdminService {
       // post_question returns Array of all Questions
       subscriber.next(questionsReturn);
       sub.unsubscribe();
-    });
+    },
+      error => {
+        subscriber.error(error);
+      }
+    );
   });
  }
 }

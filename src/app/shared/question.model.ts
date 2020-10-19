@@ -17,3 +17,10 @@ export interface Requirement {
   grant_id: number;
   question: number;
 }
+
+export interface Error{
+  text_de: string;
+  text_en: string;
+  type: number;
+  id: number;
+}
