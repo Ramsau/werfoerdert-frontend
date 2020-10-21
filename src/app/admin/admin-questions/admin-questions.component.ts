@@ -1,7 +1,7 @@
-import {Component, ElementRef, OnInit, ViewChild, Input} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, Input } from '@angular/core';
 import { AdminService } from '../admin.service';
-import {Question} from '../../shared/question.model';
-import {faTrash, faEdit} from '@fortawesome/free-solid-svg-icons';
+import { Question, QuestionType } from '../../shared/question.model';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -12,6 +12,7 @@ import {faTrash, faEdit} from '@fortawesome/free-solid-svg-icons';
 })
 export class AdminQuestionsComponent implements OnInit {
   questions: Question[];
+  questionTypes: QuestionType[];
   @ViewChild('collapseQuestionEdit') collapseQuestionEdit: ElementRef;
 
   faEdit = faEdit;
@@ -30,6 +31,12 @@ export class AdminQuestionsComponent implements OnInit {
         console.log(error);
       }
     );
+    const subQt = this.adminService.getQuestionTypes().subscribe(
+        questionTypes => {
+          this.questionTypes = questionTypes;
+          subQt.unsubscribe();
+        }
+      );
   }
 
   onCreateQuestion(question: unknown): void {

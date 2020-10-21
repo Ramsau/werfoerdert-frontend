@@ -1,6 +1,6 @@
-<app-create-question (createQuestion)="onCreateQuestion($event)"></app-create-question>
+<app-create-question (createQuestion)="onCreateQuestion($event)" [questionTypes]="questionTypes"></app-create-question>
 <div *ngFor="let question of questions" class="mouseover">
-  <div style="display: flex; width: 100%">
+  <div style="" class="question_field">
     <div class="symbol_placeholder">
       <fa-icon [icon]="faTrash" class="edit" style="margin:16px; margin-right: 0;" (click)="onDeleteQuestion(question)" ></fa-icon>
     </div>
@@ -14,6 +14,14 @@
     </div>
   </div>
   <div>
-    <app-create-question *ngIf="question.is_edit" (createQuestion)=onQuestionEdit($event) [textDE]="question.text_de" [textEN]="question.text_en" [questiontype]="question.type" [id]="question.id"></app-create-question>
+    <app-create-question
+      *ngIf="question.is_edit"
+      (createQuestion)=onQuestionEdit($event)
+      [textDE]="question.text_de"
+      [textEN]="question.text_en"
+      [questionTypeFK]="question.type"
+      [id]="question.id"
+      [questionTypes]="questionTypes"
+    ></app-create-question>
   </div>
 </div>

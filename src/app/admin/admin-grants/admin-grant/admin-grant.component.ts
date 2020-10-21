@@ -1,5 +1,6 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Grant } from '../../../shared/grant.model';
+import { AdminService } from '../../admin.service';
 
 @Component({
   selector: 'app-admin-grant',
@@ -12,10 +13,20 @@ export class AdminGrantComponent implements OnInit {
   @ViewChild('collapseContent') collapseContent: ElementRef;
   @ViewChild('collapseQuestion') collapseQuestion: ElementRef;
 
-  constructor() {
+  constructor(private adminService: AdminService) {
   }
 
   ngOnInit(): void {
+    const subG = this.adminService.getGrants().subscribe(
+      grants => {
+        // Problem, cant find Error
+        this.grants = grants;
+        subG.unsubscribe();
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   onClick(): void {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Grant } from '../../shared/grant.model';
 import { AdminService } from '../admin.service';
-import {Question} from '../../shared/question.model';
+import { Question } from '../../shared/question.model';
 
 
 @Component({

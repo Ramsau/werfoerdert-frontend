@@ -18,9 +18,9 @@ export interface Requirement {
   question: number;
 }
 
-export interface Error{
-  text_de: string;
-  text_en: string;
-  type: number;
+export interface QuestionType {
   id: number;
+  name_de: string;
+  name_en: string;
+  name_short: number;
 }

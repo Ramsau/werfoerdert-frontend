@@ -1,4 +1,5 @@
-import {Component, EventEmitter, Input, NgModule, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, NgModule, OnInit, Output } from '@angular/core';
+import { QuestionType } from '../../shared/question.model';
 
 @Component({
   selector: 'app-create-question',
@@ -8,8 +9,9 @@ import {Component, EventEmitter, Input, NgModule, OnInit, Output} from '@angular
 export class CreateQuestionComponent implements OnInit {
   @Input('textDE') textDeInput: string;
   @Input('textEN') textEnInput: string;
-  @Input() questiontype: number;
+  @Input() questionTypeFK: number;
   @Input() id: number;
+  @Input() questionTypes: QuestionType[];
   @Output()
   createQuestion = new EventEmitter<{}>();
 
@@ -24,8 +26,8 @@ export class CreateQuestionComponent implements OnInit {
     if (this.textEnInput){
       this.model.textEn = this.textEnInput;
     }
-    if (this.questiontype){
-      this.model.questionType = this.questiontype;
+    if (this.questionTypeFK){
+      this.model.questionType = this.questionTypeFK;
     }
     if (this.id){
       this.model.id = this.id;

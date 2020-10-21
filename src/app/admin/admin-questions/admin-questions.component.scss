@@ -5,7 +5,6 @@
 }
 .mouseover{
   display: block;
-
 }
 
 .mouseover:hover .edit{
@@ -60,5 +59,16 @@
 }
 .submit_button:hover {
   background-color: $page-background;
+  border: 2px solid $lightGrey;
+}
+
+//Question Field
+.question_field{
+  border: 2px solid $page-background;
+  display: flex;
+  width: 50%;
+}
+.question_field:hover{
+  transition: border 0.2s;
   border: 2px solid $lightGrey;
 }
