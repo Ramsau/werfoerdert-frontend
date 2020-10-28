@@ -15,7 +15,7 @@ export interface Requirement {
   date_lt: string;
   date_gt: string;
   grant_id: number;
-  question: number;
+  question: number | Question;
 }
 
 export interface QuestionType {

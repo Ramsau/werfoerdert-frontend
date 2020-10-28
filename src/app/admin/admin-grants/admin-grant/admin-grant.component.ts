@@ -18,6 +18,18 @@ export class AdminGrantComponent implements OnInit {
   constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
+    this.grant.requirements.map(requirement => {
+      console.log(requirement);
+      // get actual question by id
+      const subQ = this.adminService.getQuestion(requirement.question as number).subscribe(
+      (question: Question) => {
+          requirement.question = question;
+          subQ.unsubscribe();
+      },
+      error => {
+        console.log(error);
+      });
+    });
   }
 
   onClick(): void {
@@ -26,19 +38,6 @@ export class AdminGrantComponent implements OnInit {
 
   onClick_addQ(): void {
     this.collapseQuestion.nativeElement.classList.toggle('active_addQ');
-  }
-
-  getQuestionID(questionID): void {
-    const subQ = this.adminService.getQuestions().subscribe(
-      questions => {
-        this.question = questions;
-        console.log(subQ);
-        subQ.unsubscribe();
-      },
-      error => {
-        console.log(error);
-      }
-    );
   }
 }
 

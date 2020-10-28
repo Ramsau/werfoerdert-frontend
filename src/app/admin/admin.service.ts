@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Question, QuestionType } from '../shared/question.model';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Grant } from '../shared/grant.model';
 
@@ -37,18 +37,26 @@ export class AdminService {
     });
   }
 
-  getGrants(): Observable<Grant[]>{
-    return new Observable<Grant[]>(subscriber => {
-      const sub = this.httpClient.get(
-        '/api/admin/get_grants/',
-      ).subscribe((grants: Grant[]) => {
-        subscriber.next(grants);
-        sub.unsubscribe();
+  getQuestion(questionID: number): Observable<Question>{
+    return new Observable<Question>( subscriber => {
+      let questions: Question[];
+      const questionSubscription = this.getQuestions().subscribe(newQuestions => {
+          questions = newQuestions;
+
+          questions = questions.filter(question => question.id === questionID);
+          if (questions.length > 0){
+            subscriber.next(questions[0]);
+          }
+          else{
+            subscriber.error('A question with this ID does\'nt exist');
+          }
+
+          questionSubscription.unsubscribe();
       },
-        error => {
-          subscriber.error(error);
-        }
-      );
+      error => {
+        subscriber.error(error);
+        questionSubscription.unsubscribe();
+      });
     });
   }
 
@@ -69,7 +77,7 @@ export class AdminService {
 
   postQuestion(question): Observable<Question[]> {
     return new Observable<Question[]>( subscriber => {
-       const sub = this.httpClient.post<Question>(
+      const sub = this.httpClient.post<Question>(
         '/api/admin/post_question/',
         question,
       ).subscribe(
@@ -86,20 +94,35 @@ export class AdminService {
     });
   }
 
- deleteQuestion(question): Observable<Question[]>{
-  return new Observable<Question[]>( subscriber => {
-    const sub = this.httpClient.post<Question>(
-      '/api/admin/delete_question/',
-      question,
-    ).subscribe((questionsReturn: any) => {
-      // post_question returns Array of all Questions
-      subscriber.next(questionsReturn);
-      sub.unsubscribe();
-    },
-      error => {
-        subscriber.error(error);
-      }
-    );
-  });
- }
+  deleteQuestion(question): Observable<Question[]>{
+    return new Observable<Question[]>( subscriber => {
+      const sub = this.httpClient.post<Question>(
+        '/api/admin/delete_question/',
+        question,
+      ).subscribe((questionsReturn: any) => {
+          // post_question returns Array of all Questions
+          subscriber.next(questionsReturn);
+          sub.unsubscribe();
+        },
+        error => {
+          subscriber.error(error);
+        }
+      );
+    });
+  }
+
+  getGrants(): Observable<Grant[]>{
+    return new Observable<Grant[]>(subscriber => {
+      const sub = this.httpClient.get(
+        '/api/admin/get_grants/',
+      ).subscribe((grants: Grant[]) => {
+        subscriber.next(grants);
+        sub.unsubscribe();
+      },
+        error => {
+          subscriber.error(error);
+        }
+      );
+    });
+  }
 }

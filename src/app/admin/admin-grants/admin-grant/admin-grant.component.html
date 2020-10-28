@@ -6,8 +6,8 @@
   >{{ grant.name_de }}</button>
   <div class="content" #collapseContent>
     <p *ngFor="let requirement of grant.requirements">
-      <app-loading *ngIf="questionsLoading"></app-loading>
-      <span *ngIf="!questionsLoading">{{requirement.question}}</span>
+      <app-loading *ngIf="questionsLoading || !requirement.question.text_de "></app-loading>
+      <span *ngIf="!questionsLoading || requirement.question.text_de">{{ requirement.question.text_de }}</span>
     </p>
     <button
       type="button"
