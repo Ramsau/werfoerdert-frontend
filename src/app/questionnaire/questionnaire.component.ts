@@ -3,6 +3,7 @@ import { QuestionnaireService } from './questionnaire.service';
 import { QuestionnaireState} from '../shared/grant.model';
 import { FormGroup } from '@angular/forms';
 import { getFormControl } from './question/question.component';
+import {Message} from '../shared/message.model';
 
 @Component({
   selector: 'app-questionnaire',
@@ -16,6 +17,7 @@ export class QuestionnaireComponent implements OnInit {
   questionsForm = new FormGroup({});
   loading = true;
   showGrantsMet = false;
+  sharedService: any;
 
   constructor(private questionnaireService: QuestionnaireService) { }
 
@@ -26,7 +28,7 @@ export class QuestionnaireComponent implements OnInit {
         sub.unsubscribe();
       },
       error => {
-        console.log(error);
+        this.sharedService.messageEmitter.emit(Message.error('Der Server konnte nicht erreicht werden.'));
       });
   }
 
@@ -70,7 +72,7 @@ export class QuestionnaireComponent implements OnInit {
           sub.unsubscribe();
         },
         error => {
-          console.log(error);
+
         });
   }
 
@@ -84,7 +86,7 @@ export class QuestionnaireComponent implements OnInit {
 
       this.getNextQuestions();
     } else {
-      console.log('invalid');
+      this.sharedService.messageEmitter.emit(Message.warn('Die Antworten sind nicht korrekt.'));
     }
   }
 

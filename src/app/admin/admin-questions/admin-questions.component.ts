@@ -2,6 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild, Input } from '@angular/core';
 import { AdminService } from '../admin.service';
 import { Question, QuestionType } from '../../shared/question.model';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { Message } from '../../shared/message.model';
+import {SharedService} from '../../shared/shared.service';
 
 
 
@@ -18,7 +20,10 @@ export class AdminQuestionsComponent implements OnInit {
   faEdit = faEdit;
   faTrash = faTrash;
 
-  constructor(private adminService: AdminService) {
+  constructor(
+    private adminService: AdminService,
+    private sharedService: SharedService
+  ) {
   }
 
   ngOnInit(): void {
@@ -28,7 +33,7 @@ export class AdminQuestionsComponent implements OnInit {
         subQ.unsubscribe();
       },
       error => {
-        console.log(error);
+        this.sharedService.messageEmitter.emit(Message.warn('Der Server konnte nicht erreicht werden.'));
       }
     );
     const subQt = this.adminService.getQuestionTypes().subscribe(
@@ -45,7 +50,7 @@ export class AdminQuestionsComponent implements OnInit {
         this.questions = returnQuestions.slice();
       },
       error => {
-        console.log(error);
+        this.sharedService.messageEmitter.emit(Message.warn('Der Server konnte nicht erreicht werden.'));
       }
     );
   }
@@ -60,7 +65,7 @@ export class AdminQuestionsComponent implements OnInit {
         this.questions = returnQuestions.slice();
       },
       error => {
-        console.log(error);
+        this.sharedService.messageEmitter.emit(Message.warn('Der Server konnte nicht erreicht werden.'));
       }
     );
   }
@@ -71,7 +76,7 @@ export class AdminQuestionsComponent implements OnInit {
         this.questions = returnQuestions.slice();
       },
       error => {
-        console.log(error);
+        this.sharedService.messageEmitter.emit(Message.warn('Der Server konnte nicht erreicht werden.'));
       }
     );
   }

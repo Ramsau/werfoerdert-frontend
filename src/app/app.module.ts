@@ -17,6 +17,7 @@ import { AdminQuestionsComponent } from './admin/admin-questions/admin-questions
 import { AdminGrantComponent } from './admin/admin-grants/admin-grant/admin-grant.component';
 import { CreateQuestionComponent } from './admin/create-question/create-question.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { MessageComponent } from './shared/message/message.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
     AdminQuestionsComponent,
     AdminGrantComponent,
     CreateQuestionComponent,
+    MessageComponent,
   ],
     imports: [
         BrowserModule,

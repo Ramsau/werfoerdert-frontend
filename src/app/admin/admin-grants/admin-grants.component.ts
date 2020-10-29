@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Grant } from '../../shared/grant.model';
 import { AdminService } from '../admin.service';
 import { Question } from '../../shared/question.model';
+import { SharedService } from '../../shared/shared.service';
+import { Message } from '../../shared/message.model';
 
 
 @Component({
@@ -13,7 +15,10 @@ export class AdminGrantsComponent implements OnInit {
   grants: Grant[];
   questions: Question[];
   questionLoading = true;
-  constructor(private adminService: AdminService) { }
+  constructor(
+    private adminService: AdminService,
+    private sharedService: SharedService
+  ) { }
 
   ngOnInit(): void {
     const subG = this.adminService.getGrants().subscribe(
@@ -22,7 +27,7 @@ export class AdminGrantsComponent implements OnInit {
         subG.unsubscribe();
       },
       error => {
-        console.log(error);
+        this.sharedService.messageEmitter.emit(Message.warn('Der Server konnte nicht erreicht werden.'));
       }
     );
     const subQ = this.adminService.getQuestions().subscribe(
@@ -32,7 +37,7 @@ export class AdminGrantsComponent implements OnInit {
         this.questionLoading = false;
       },
       error => {
-        console.log(error);
+        this.sharedService.messageEmitter.emit(Message.warn('Der Server konnte nicht erreicht werden.'));
       }
     );
   }
