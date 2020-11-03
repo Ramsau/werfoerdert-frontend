@@ -1,8 +1,51 @@
+@use '../../../style/globals' as *;
+
 #overlay{
+  //display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 5%;
   z-index: 1;
-  background: transparent;
+  background-color: transparentize($page-background, 0.2);
 }
 
-#showMessage{
-  background-color: white;
+
+.messageContainer{
+  margin: auto;
+  width: 45%;
+  display: flex;
+}
+
+.message{
+  margin-top: 5%;
+  position: inherit;
+  border: 2px solid $lightGrey;
+  padding: 30px;
+  z-index: 2;
+  box-shadow: 0 0 5px $lightGrey;
+}
+
+h1{
+  text-align: center;
+  margin-top: 0;
+}
+
+.closeButton{
+  text-decoration: none;
+  color: $font-color;
+  outline: 0;
+  background-color: $lightGrey;
+  width: 50%;
+  border: 2px solid $page-background;
+  padding: 10px;
+}
+
+.closeButton:hover{
+  background-color: $page-background;
+  border: 2px solid $lightGrey;
+  cursor: pointer;
+
 }

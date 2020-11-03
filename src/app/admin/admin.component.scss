@@ -7,3 +7,22 @@
 #admin-wrapper {
   margin-top: $header-height;
 }
+
+.link{
+  text-decoration: none;
+  color: $font-color;
+  outline: 0;
+}
+
+.linkContainer{
+  background-color: $lightGrey;
+  width: min-content;
+  border: 2px solid $page-background;
+  padding: 10px;
+}
+.linkContainer:hover{
+  background-color: $page-background;
+  border: 2px solid $lightGrey;
+  cursor: pointer;
+
+}

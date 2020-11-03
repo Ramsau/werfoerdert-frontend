@@ -1,10 +1,13 @@
 <div id="admin-title">
   <h1>Adminseite</h1>
 </div>
-<app-message></app-message>
   <div id="admin-wrapper">
-    <a routerLink="/admin">Grants</a>
-    <a routerLink="/admin/questions">Questions</a>
+    <div class="linkContainer">
+      <a routerLink="/admin" class="link">Grants </a>
+    </div>
+    <div class="linkContainer">
+      <a routerLink="/admin/questions" class="link">Questions</a>
+    </div>
     <router-outlet></router-outlet>
   </div>
 
