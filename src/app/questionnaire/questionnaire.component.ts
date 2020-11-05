@@ -3,7 +3,7 @@ import { QuestionnaireService } from './questionnaire.service';
 import { QuestionnaireState} from '../shared/grant.model';
 import { FormGroup } from '@angular/forms';
 import { getFormControl } from './question/question.component';
-import {Message} from '../shared/message.model';
+import {Message} from '../shared/message/message.model';
 
 @Component({
   selector: 'app-questionnaire',

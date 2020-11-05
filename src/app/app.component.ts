@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { SharedService } from './shared/shared.service';
-import {Message} from './shared/message.model';
+import {Message} from './shared/message/message.model';
 
 @Component({
   selector: 'app-root',

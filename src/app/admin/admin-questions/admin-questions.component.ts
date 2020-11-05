@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild, Input } from '@angular/core';
 import { AdminService } from '../admin.service';
 import { Question, QuestionType } from '../../shared/question.model';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
-import { Message } from '../../shared/message.model';
+import { Message } from '../../shared/message/message.model';
 import {SharedService} from '../../shared/shared.service';
 
 

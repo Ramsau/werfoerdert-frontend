@@ -3,7 +3,7 @@ import { Grant } from '../../shared/grant.model';
 import { AdminService } from '../admin.service';
 import { Question } from '../../shared/question.model';
 import { SharedService } from '../../shared/shared.service';
-import { Message } from '../../shared/message.model';
+import { Message } from '../../shared/message/message.model';
 
 
 @Component({
