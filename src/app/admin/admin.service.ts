@@ -16,7 +16,6 @@ export class AdminService {
     return new Observable<Question[]>( subscriber => {
       if (this.cachedQuestions){
         setTimeout(() => {
-          // To prevent Error: "cannot access [subscription" - when trying to unsubscribe after getting data
           subscriber.next(this.cachedQuestions.slice());
         }, 0);
       }

@@ -1,4 +1,8 @@
 <app-create-question (createQuestion)="onCreateQuestion($event)" [questionTypes]="questionTypes"></app-create-question>
+<button (click)="emitInfo()">Info</button>
+<button (click)="emitError()">Error</button>
+<button (click)="emitSuccess()">Success</button>
+<button (click)= "emitWarn()">Warning</button>
 <div *ngFor="let question of questions" class="mouseover">
   <div style="" class="question_field">
     <div class="symbol_placeholder">

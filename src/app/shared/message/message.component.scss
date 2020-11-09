@@ -7,6 +7,7 @@
   right: 0;
   bottom: 0;
   z-index: 1;
+  pointer-events: none;
 }
 
 .messageContainer{
@@ -19,13 +20,10 @@
   border: 2px solid $lightGrey;
   box-shadow: 0 0 5px $lightGrey;
   background-color: $page-background;
-  display: none;
+  display: flex;
   height: 35px;
 
 
-}
-.message.active{
-  display: flex;
 }
 
 .error{

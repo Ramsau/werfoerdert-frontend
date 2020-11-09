@@ -1,9 +1,9 @@
 <div class="overlay">
   <div class="messageContainer">
-    <div class="message" *ngFor="let message of ['1', '2', '3']" #errorMessage>
-      <p class="error">Errormessage{{ message }}</p>
+    <div class="message" *ngFor="let message of messages">
+      <p class="error"><fa-icon [icon]="" ></fa-icon>{{ message.type }} {{ message.text }}</p>
         <div class="exiticon">
-          <fa-icon [icon]="fAtimescircle" (click)=showMessage() class="close"></fa-icon>
+          <fa-icon [icon]="fAtimescircle" (click)=closeMessage(message.timestamp) class="close"></fa-icon>
         </div>
     </div>
   </div>

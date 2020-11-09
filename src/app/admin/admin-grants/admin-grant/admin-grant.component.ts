@@ -2,6 +2,8 @@ import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '
 import { Grant } from '../../../shared/grant.model';
 import { AdminService } from '../../admin.service';
 import { Question } from '../../../shared/question.model';
+import {Message} from '../../../shared/message/message.model';
+import {SharedService} from '../../../shared/shared.service';
 
 @Component({
   selector: 'app-admin-grant',
@@ -15,19 +17,20 @@ export class AdminGrantComponent implements OnInit {
   @ViewChild('collapseContent') collapseContent: ElementRef;
   @ViewChild('collapseQuestion') collapseQuestion: ElementRef;
 
-  constructor(private adminService: AdminService) {}
+  constructor(private adminService: AdminService,
+              private sharedService: SharedService
+  ) {}
 
   ngOnInit(): void {
     this.grant.requirements.map(requirement => {
       console.log(requirement);
-      // get actual question by id
       const subQ = this.adminService.getQuestion(requirement.question as number).subscribe(
       (question: Question) => {
           requirement.question = question;
           subQ.unsubscribe();
       },
       error => {
-        console.log(error);
+        this.sharedService.messageEmitter.emit(Message.error('Ein Fehler ist aufgetreten!'));
       });
     });
   }

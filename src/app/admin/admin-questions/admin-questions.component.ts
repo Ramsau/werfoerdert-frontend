@@ -80,4 +80,23 @@ export class AdminQuestionsComponent implements OnInit {
       }
     );
   }
+
+  // Error Test functions
+  emitError(): void{
+    this.sharedService.messageEmitter.emit(Message.error('Ein Fehler ist aufgetreten!'));
+  }
+  emitInfo(): void{
+    this.sharedService.messageEmitter.emit(Message.info('Ey INFO!'));
+  }
+  emitSuccess(): void{
+    this.sharedService.messageEmitter.emit(Message.success('Guade Partie, hot funktioniert'));
+  }
+  emitWarn(): void{
+    this.sharedService.messageEmitter.emit(Message.warn('Dir sei verziehen!'));
+  }
+
 }
+
+
+
+
