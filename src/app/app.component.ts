@@ -19,7 +19,5 @@ export class AppComponent implements OnInit {
     this.titleService.setTitle('werFördert');
     this.sharedService.messageEmitter.subscribe((message: Message) => {
     });
-    // Test for message emitter
-    //this.sharedService.messageEmitter.subscribe(und do jetz console loggen)
   }
 }

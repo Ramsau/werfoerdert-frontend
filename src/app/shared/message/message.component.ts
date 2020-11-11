@@ -1,31 +1,36 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Message } from './message.model';
-import {faTimes, faTimesCircle} from '@fortawesome/free-solid-svg-icons';
-import {SharedService} from '../shared.service';
+import {
+  faCheckCircle,
+  faExclamationCircle,
+  faExclamationTriangle,
+  faInfoCircle,
+  faTimes,
+  faTimesCircle
+} from '@fortawesome/free-solid-svg-icons';
+import { SharedService } from '../shared.service';
+
 
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss']
 })
-export class MessageComponent implements OnInit, OnDestroy {
 
+export class MessageComponent implements OnInit, OnDestroy {
   @ViewChild('errorMessage') errorMessage: ElementRef;
-  messages: Message[];
-  dummyMessages = [
-    Message.error('AAAA ERROR'),
-    Message.info('Nua zur Info'),
-    Message.warn('Jetz miass ma bissi aufpassn')
-  ];
+  @Input() type: any;
+  messages: Message[] = [];
   subM: any;
   fAtimescircle = faTimesCircle;
-  private message: Message[];
-  constructor(private sharedService: SharedService) { }
+  constructor(private sharedService: SharedService) {
+  }
 
   ngOnInit(): void {
      this.subM = this.sharedService.messageEmitter.subscribe(
-      messages => {
-        this.messages = messages;
+      message => {
+        setTimeout(() => {this.closeMessage(message.timestamp); }, 15000);
+        this.messages.push(message);
       }
     );
   }

@@ -3,36 +3,29 @@
     type="button"
     class="collapsible"
     (click)=onClick()
-  >{{ grant.name_de }}</button>
+  >{{ grant.name_de }}
+  </button>
   <div class="content" #collapseContent>
-    <p *ngFor="let requirement of grant.requirements">
+    <div class="questionParagraph" *ngFor="let requirement of grant.requirements">
       <app-loading *ngIf="questionsLoading || !requirement.question.text_de "></app-loading>
-      <span *ngIf="!questionsLoading || requirement.question.text_de">{{ requirement.question.text_de }}</span>
-    </p>
+      <button
+        class="collapsible questionCollapsible"
+        *ngIf="!questionsLoading || requirement.question.text_de"
+        (click)="showRequirements()">
+        {{ requirement.question.text_de }}
+      </button>
+      <div class="requirementCollapsible" #collapseRequirement>
+        <p class="requirementConditions">requiremetnssee</p>
+      </div>
+    </div>
     <button
       type="button"
       class="add_Question_button"
       (click)=onClick_addQ()>
-        Add Question
+      Add Question
     </button>
     <div class="addQuestion_form" #collapseQuestion>
-      <form class="formQuestions">
-        <div style="width:100%">
-          <input type="text" id="text_de" class="inputfields" name="text_de" placeholder="Frage auf Deutsch:">
-          <input type="text" id="text_en" class="inputfields" name="text_en" placeholder="Frage auf Englisch:">
-          <select class="inputfields">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </select>
-        </div>
-          <button
-            style="float: right;"
-            type="button"
-            class="submit_button"
-            name="submitButton"
-          >Submit</button>
-      </form>
+      <app-create-question></app-create-question>
     </div>
     <app-admin-grant
       *ngFor="let childGrant of grant.children"
@@ -41,5 +34,3 @@
     ></app-admin-grant>
   </div>
 </div>
-
-

@@ -1,9 +1,11 @@
 <div class="overlay">
   <div class="messageContainer">
-    <div class="message" *ngFor="let message of messages">
-      <p class="error"><fa-icon [icon]="" ></fa-icon>{{ message.type }} {{ message.text }}</p>
-        <div class="exiticon">
-          <fa-icon [icon]="fAtimescircle" (click)=closeMessage(message.timestamp) class="close"></fa-icon>
+    <div class="message {{message.type}}" *ngFor="let message of messages">
+      <p class="error">{{ message.type }} {{ message.text }}</p>
+        <div class="containerExiticon">
+          <div class="exiticon">
+            <i class="fas fa-times-circle close" (click)="closeMessage(message.timestamp)" ></i>
+          </div>
         </div>
     </div>
   </div>

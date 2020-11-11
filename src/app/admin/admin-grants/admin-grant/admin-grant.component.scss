@@ -22,6 +22,15 @@ app-admin-grant{
   background-color: $lightGrey;
 }
 
+.questionParagraph{
+  margin: 0;
+}
+
+.questionCollapsible{
+  padding: 10px;
+  border-left: 1px solid $grey;
+}
+
 //Grant Requirements(Questions)
 .content {
   padding: 0 18px;
@@ -93,6 +102,22 @@ app-admin-grant{
 .submit_button:hover {
   background-color: $page-background;
   border: 2px solid $lightGrey;
+}
+
+.requirementCollapsible{
+  display: none;
+  margin-left: 15px;
+  border-left: 1px solid $grey;
+  padding-left: 15px;
+  margin-top: 0;
+}
+
+.requirementCollapsible.active_showR{
+  display: block;
+}
+
+.requirementConditions{
+  margin: 5px;
 }
 
 

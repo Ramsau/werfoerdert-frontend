@@ -12,18 +12,21 @@
 
 .messageContainer{
   margin: 0;
-  width: 100%;
+  width: calc(100% - 2 * 1em);
+  padding: 1em;
 }
 
 .message{
   position: inherit;
-  border: 2px solid $lightGrey;
+  //border: 2px solid $lightGrey;
   box-shadow: 0 0 5px $lightGrey;
   background-color: $page-background;
   display: flex;
   height: 35px;
-
-
+  pointer-events: all;
+  margin: 0.8em;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
 .error{
@@ -33,18 +36,39 @@
 }
 
 .close{
-  color: $lightGrey;
-  line-height: 35px;
+  color: $font-color;
+  padding: 0;
 
 }
 .close:hover{
-  color: $font-color;
+  box-shadow: 0 0 5px $lightGrey;
+  border: 1px solid $font-color;
 }
 
 .exiticon{
   width: 35px;
   height: 100%;
   text-align: center;
-  margin-left: auto;
   display: inline;
+}
+.containerExiticon{
+  margin-left: auto;
+  line-height: 35px;
+}
+
+.INFO{
+  background-color: #2962ff;
+  color: $font-color;
+}
+.ERROR{
+  background-color: #d50000;
+  color: $font-color;
+}
+.SUCCESS{
+  background-color: #64dd17;
+  color: $font-color;
+}
+.WARN{
+  background-color: #ffc800;
+  color: $font-color;
 }

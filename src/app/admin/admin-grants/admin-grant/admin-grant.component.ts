@@ -16,6 +16,7 @@ export class AdminGrantComponent implements OnInit {
   @Input() questionsLoading: boolean;
   @ViewChild('collapseContent') collapseContent: ElementRef;
   @ViewChild('collapseQuestion') collapseQuestion: ElementRef;
+  @ViewChild('collapseRequirement') collapseRequirement: ElementRef;
 
   constructor(private adminService: AdminService,
               private sharedService: SharedService
@@ -41,6 +42,10 @@ export class AdminGrantComponent implements OnInit {
 
   onClick_addQ(): void {
     this.collapseQuestion.nativeElement.classList.toggle('active_addQ');
+  }
+
+  showRequirements(): void {
+    this.collapseRequirement.nativeElement.classList.toggle('active_showR');
   }
 }
 
