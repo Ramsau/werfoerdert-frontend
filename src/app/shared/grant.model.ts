@@ -1,6 +1,5 @@
 import { Question, Requirement } from './question.model';
 
-
 export interface Grant{
   id: number;
   is_grant: boolean;
@@ -12,9 +11,6 @@ export interface Grant{
   children: Grant[];
   requirements: Requirement[];
 }
-
-
-
 
 export interface QuestionnaireState{
   current_grant: Grant | null;

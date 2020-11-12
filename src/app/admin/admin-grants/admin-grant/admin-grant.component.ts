@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Grant } from '../../../shared/grant.model';
 import { AdminService } from '../../admin.service';
-import { Question } from '../../../shared/question.model';
-import {Message} from '../../../shared/message/message.model';
-import {SharedService} from '../../../shared/shared.service';
+import { Question, Requirement } from '../../../shared/question.model';
+import { Message } from '../../../shared/message/message.model';
+import { SharedService } from '../../../shared/shared.service';
 
 @Component({
   selector: 'app-admin-grant',
@@ -14,6 +14,7 @@ export class AdminGrantComponent implements OnInit {
   @Input() grant: Grant;
   @Input() question: Question[];
   @Input() questionsLoading: boolean;
+  @Input() requirement: Requirement[];
   @ViewChild('collapseContent') collapseContent: ElementRef;
   @ViewChild('collapseQuestion') collapseQuestion: ElementRef;
   @ViewChild('collapseRequirement') collapseRequirement: ElementRef;
@@ -24,7 +25,6 @@ export class AdminGrantComponent implements OnInit {
 
   ngOnInit(): void {
     this.grant.requirements.map(requirement => {
-      console.log(requirement);
       const subQ = this.adminService.getQuestion(requirement.question as number).subscribe(
       (question: Question) => {
           requirement.question = question;

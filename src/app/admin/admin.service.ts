@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Question, QuestionType } from '../shared/question.model';
+import { Question, QuestionType, Requirement } from '../shared/question.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Grant } from '../shared/grant.model';
@@ -123,5 +123,20 @@ export class AdminService {
         }
       );
     });
+  }
+
+  getRequirements(): Observable<Requirement[]>{
+     return new Observable<Requirement[]>(subscriber => {
+       const sub = this.httpClient.get(
+         '/api/admin/get_requirements',
+       ).subscribe((requirements: Requirement[]) => {
+         subscriber.next(requirements);
+         sub.unsubscribe();
+         },
+         error => {
+         subscriber.error(error);
+         }
+       );
+     });
   }
 }

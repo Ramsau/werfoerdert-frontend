@@ -16,7 +16,6 @@ import { AdminGrantsComponent } from './admin/admin-grants/admin-grants.componen
 import { AdminQuestionsComponent } from './admin/admin-questions/admin-questions.component';
 import { AdminGrantComponent } from './admin/admin-grants/admin-grant/admin-grant.component';
 import { CreateQuestionComponent } from './admin/create-question/create-question.component';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { MessageComponent } from './shared/message/message.component';
 
 @NgModule({
@@ -40,8 +39,7 @@ import { MessageComponent } from './shared/message/message.component';
         HttpClientModule,
         ReactiveFormsModule,
         routing,
-        FormsModule,
-        FontAwesomeModule
+        FormsModule
     ],
   providers: [HttpClient ],
   bootstrap: [AppComponent]
