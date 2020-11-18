@@ -81,7 +81,6 @@ export class AdminService {
         question,
       ).subscribe(
         (questionsReturn: any) => {
-          // post_question returns Array of all Questions, refreshing cache
           this.cachedQuestions = questionsReturn;
           subscriber.next(questionsReturn);
           sub.unsubscribe();

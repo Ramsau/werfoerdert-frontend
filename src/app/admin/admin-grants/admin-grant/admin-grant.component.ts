@@ -18,6 +18,7 @@ export class AdminGrantComponent implements OnInit {
   @ViewChild('collapseContent') collapseContent: ElementRef;
   @ViewChild('collapseQuestion') collapseQuestion: ElementRef;
   @ViewChild('collapseRequirement') collapseRequirement: ElementRef;
+  private showing = false;
 
   constructor(private adminService: AdminService,
               private sharedService: SharedService
@@ -44,9 +45,12 @@ export class AdminGrantComponent implements OnInit {
     this.collapseQuestion.nativeElement.classList.toggle('active_addQ');
   }
 
-  showRequirements(): void {
-    this.collapseRequirement.nativeElement.classList.toggle('active_showR');
+  showRequirements(rID): void {
+    if (document.getElementById(rID).style.display === 'none'){
+      document.getElementById(rID).style.display = 'block';
+    }
+    else if (document.getElementById(rID).style.display === 'block'){
+      document.getElementById(rID).style.display = 'none';
+    }
   }
 }
-
-

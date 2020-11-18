@@ -1,13 +1,5 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Message } from './message.model';
-import {
-  faCheckCircle,
-  faExclamationCircle,
-  faExclamationTriangle,
-  faInfoCircle,
-  faTimes,
-  faTimesCircle
-} from '@fortawesome/free-solid-svg-icons';
 import { SharedService } from '../shared.service';
 
 
@@ -22,7 +14,6 @@ export class MessageComponent implements OnInit, OnDestroy {
   @Input() type: any;
   messages: Message[] = [];
   subM: any;
-  fAtimescircle = faTimesCircle;
   constructor(private sharedService: SharedService) {
   }
 

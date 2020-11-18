@@ -11,11 +11,17 @@
       <button
         class="collapsible questionCollapsible"
         *ngIf="!questionsLoading || requirement.question.text_de"
-        (click)="showRequirements()">
+        (click)="showRequirements(requirement.id)">
         {{ requirement.question.text_de }}
       </button>
-      <div class="requirementCollapsible" #collapseRequirement>
-        <p class="requirementConditions">requiremetnssee</p>
+      <div class="requirementCollapsible" [id]="requirement.id" style="display: none;">
+        <p *ngIf="requirement.bool" class="requirementConditions">{{ requirement.bool }}</p>
+        <p *ngIf="requirement.int_exact" class="requirementConditions">{{ requirement.int_exact }}</p>
+        <p *ngIf="requirement.int_lt" class="requirementConditions">{{ requirement.int_lt }}</p>
+        <p *ngIf="requirement.int_gt" class="requirementConditions">{{ requirement.int_gt }}</p>
+        <p *ngIf="requirement.date_exact" class="requirementConditions">{{ requirement.date_exact }}</p>
+        <p *ngIf="requirement.date_lt" class="requirementConditions">{{ requirement.date_lt }}</p>
+        <p *ngIf="requirement.date_gt" class="requirementConditions">{{ requirement.date_gt }}</p>
       </div>
     </div>
     <button

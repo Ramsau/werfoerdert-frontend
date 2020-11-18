@@ -6,10 +6,10 @@
 <div *ngFor="let question of questions" class="mouseover">
   <div style="" class="question_field">
     <div class="symbol_placeholder">
-      <fa-icon [icon]="faTrash" class="edit" style="margin:16px; margin-right: 0;" (click)="onDeleteQuestion(question)" ></fa-icon>
+      <i class="fas fa-trash edit" style="margin:16px; margin-right: 0;" (click)="onDeleteQuestion(question)" ></i>
     </div>
     <div class="symbol_placeholder">
-      <fa-icon [icon]="faEdit" class="edit" style="margin:16px; margin-right: 0;" (click)="onQuestionEditCollapsible(question)"></fa-icon>
+      <i class="fas fa-edit edit" style="margin:16px; margin-right: 0;" (click)="onQuestionEditCollapsible(question)" ></i>
     </div>
     <div>
       <p style="margin: 16px; margin-right: 0;">
