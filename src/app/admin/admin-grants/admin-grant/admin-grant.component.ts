@@ -45,12 +45,4 @@ export class AdminGrantComponent implements OnInit {
     this.collapseQuestion.nativeElement.classList.toggle('active_addQ');
   }
 
-  showRequirements(rID): void {
-    if (document.getElementById(rID).style.display === 'none'){
-      document.getElementById(rID).style.display = 'block';
-    }
-    else if (document.getElementById(rID).style.display === 'block'){
-      document.getElementById(rID).style.display = 'none';
-    }
-  }
 }

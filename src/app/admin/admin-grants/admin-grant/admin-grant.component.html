@@ -8,20 +8,20 @@
   <div class="content" #collapseContent>
     <div class="questionParagraph" *ngFor="let requirement of grant.requirements">
       <app-loading *ngIf="questionsLoading || !requirement.question.text_de "></app-loading>
-      <button
-        class="collapsible questionCollapsible"
-        *ngIf="!questionsLoading || requirement.question.text_de"
-        (click)="showRequirements(requirement.id)">
-        {{ requirement.question.text_de }}
-      </button>
-      <div class="requirementCollapsible" [id]="requirement.id" style="display: none;">
-        <p *ngIf="requirement.bool" class="requirementConditions">{{ requirement.bool }}</p>
-        <p *ngIf="requirement.int_exact" class="requirementConditions">{{ requirement.int_exact }}</p>
-        <p *ngIf="requirement.int_lt" class="requirementConditions">{{ requirement.int_lt }}</p>
-        <p *ngIf="requirement.int_gt" class="requirementConditions">{{ requirement.int_gt }}</p>
-        <p *ngIf="requirement.date_exact" class="requirementConditions">{{ requirement.date_exact }}</p>
-        <p *ngIf="requirement.date_lt" class="requirementConditions">{{ requirement.date_lt }}</p>
-        <p *ngIf="requirement.date_gt" class="requirementConditions">{{ requirement.date_gt }}</p>
+      <div
+        class="questionCollapsible"
+        *ngIf="!questionsLoading || requirement.question.text_de">
+        <p style="margin-top: auto; margin-bottom: auto;">{{ requirement.question.text_de }}</p>
+        <div>
+          <p *ngIf="requirement.bool == true" class="requirementConditions"><i class="fas fa-check"></i></p>
+          <p *ngIf="requirement.bool == false" class="requirementConditions"><i class="fas fa-times"></i></p>
+          <p *ngIf="requirement.int_exact !== null" class="requirementConditions"> = {{ requirement.int_exact }}</p>
+          <p *ngIf="requirement.int_lt !== null" class="requirementConditions"> < {{ requirement.int_lt }}</p>
+          <p *ngIf="requirement.int_gt !== null" class="requirementConditions"> > {{ requirement.int_gt }}</p>
+          <p *ngIf="requirement.date_exact !== null" class="requirementConditions"> = {{ requirement.date_exact | date:"dd.MM.yyyy" }}</p>
+          <p *ngIf="requirement.date_lt !== null" class="requirementConditions"> < {{ requirement.date_lt | date:"dd.MM.yyyy" }}</p>
+          <p *ngIf="requirement.date_gt !== null" class="requirementConditions"> > {{ requirement.date_gt | date:"dd.MM.yyyy" }}</p>
+        </div>
       </div>
     </div>
     <button
