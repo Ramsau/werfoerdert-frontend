@@ -92,6 +92,23 @@ export class AdminService {
     });
   }
 
+  postRequirement(requirement): Observable<Requirement[]> {
+    return new Observable<Requirement[]>( subscriber => {
+      const sub = this.httpClient.post<Requirement>(
+        '/api/admin/post_requirement',
+        requirement,
+      ).subscribe(
+        (requirementsReturn: any) => {
+          subscriber.next(requirementsReturn);
+          sub.unsubscribe();
+        },
+        error => {
+          subscriber.error(error);
+        }
+      );
+    });
+  }
+
   deleteQuestion(question): Observable<Question[]>{
     return new Observable<Question[]>( subscriber => {
       const sub = this.httpClient.post<Question>(

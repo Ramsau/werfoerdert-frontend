@@ -15,10 +15,10 @@ export class AdminGrantComponent implements OnInit {
   @Input() question: Question[];
   @Input() questionsLoading: boolean;
   @Input() requirement: Requirement[];
+
   @ViewChild('collapseContent') collapseContent: ElementRef;
   @ViewChild('collapseQuestion') collapseQuestion: ElementRef;
   @ViewChild('collapseRequirement') collapseRequirement: ElementRef;
-  private showing = false;
 
   constructor(private adminService: AdminService,
               private sharedService: SharedService
@@ -37,6 +37,17 @@ export class AdminGrantComponent implements OnInit {
     });
   }
 
+  onCreateRequirement(requirement: Requirement[]){
+    const  postR = this.adminService.postRequirement(requirement).subscribe(
+      returnRequirements => {
+        this.requirement = returnRequirements.slice();
+      },
+      error => {
+        this.sharedService.messageEmitter.emit(Message.warn('Der Server konnte nicht erreicht werden.'));
+      }
+    );
+  }
+
   onClick(): void {
     this.collapseContent.nativeElement.classList.toggle('active');
   }
@@ -44,5 +55,4 @@ export class AdminGrantComponent implements OnInit {
   onClick_addQ(): void {
     this.collapseQuestion.nativeElement.classList.toggle('active_addQ');
   }
-
 }

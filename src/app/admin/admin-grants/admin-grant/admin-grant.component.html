@@ -24,16 +24,8 @@
         </div>
       </div>
     </div>
-    <button
-      type="button"
-      class="add_Question_button"
-      (click)=onClick_addQ()>
-      Add Question
-    </button>
-    <div class="addQuestion_form" #collapseQuestion>
-      <app-create-question></app-create-question>
-    </div>
     <app-admin-grant
+      style="border: 1px solid black"
       *ngFor="let childGrant of grant.children"
       [grant]="childGrant"
       [questionsLoading]="questionsLoading"
