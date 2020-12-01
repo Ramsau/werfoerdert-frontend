@@ -9,23 +9,26 @@
     <div class="questionParagraph" *ngFor="let requirement of grant.requirements">
       <app-loading *ngIf="questionsLoading || !requirement.question.text_de "></app-loading>
       <div
-        class="questionCollapsible"
+        class="questionCollapsible mouseover"
         *ngIf="!questionsLoading || requirement.question.text_de">
-        <p style="margin-top: auto; margin-bottom: auto;">{{ requirement.question.text_de }}</p>
-        <div>
-          <p *ngIf="requirement.bool == true" class="requirementConditions"><i class="fas fa-check"></i></p>
-          <p *ngIf="requirement.bool == false" class="requirementConditions"><i class="fas fa-times"></i></p>
-          <p *ngIf="requirement.int_exact !== null" class="requirementConditions"> = {{ requirement.int_exact }}</p>
-          <p *ngIf="requirement.int_lt !== null" class="requirementConditions"> < {{ requirement.int_lt }}</p>
-          <p *ngIf="requirement.int_gt !== null" class="requirementConditions"> > {{ requirement.int_gt }}</p>
-          <p *ngIf="requirement.date_exact !== null" class="requirementConditions"> = {{ requirement.date_exact | date:"dd.MM.yyyy" }}</p>
-          <p *ngIf="requirement.date_lt !== null" class="requirementConditions"> < {{ requirement.date_lt | date:"dd.MM.yyyy" }}</p>
-          <p *ngIf="requirement.date_gt !== null" class="requirementConditions"> > {{ requirement.date_gt | date:"dd.MM.yyyy" }}</p>
+        <div style="width: 18px;" class="requirements">
+          <i class="fas fa-edit edit"></i>
+        </div>
+        <div class="requirements">{{ requirement.question.text_de }}</div>
+        <div class="requirements">
+          <i *ngIf="requirement.bool == true" class="fas fa-check"></i>
+          <i *ngIf="requirement.bool == false" class="fas fa-times"></i>
+          <div *ngIf="requirement.int_exact !== null" > = {{ requirement.int_exact }}</div>
+          <div *ngIf="requirement.int_lt !== null" > < {{ requirement.int_lt }}</div>
+          <div *ngIf="requirement.int_gt !== null" > > {{ requirement.int_gt }}</div>
+          <div *ngIf="requirement.date_exact !== null" > = {{ requirement.date_exact | date:"dd.MM.yyyy" }}</div>
+          <div *ngIf="requirement.date_lt !== null" > < {{ requirement.date_lt | date:"dd.MM.yyyy" }}</div>
+          <div *ngIf="requirement.date_gt !== null" > > {{ requirement.date_gt | date:"dd.MM.yyyy" }}</div>
         </div>
       </div>
     </div>
     <app-admin-grant
-      style="border: 1px solid black"
+      style="border: 1px solid black; margin:1px;"
       *ngFor="let childGrant of grant.children"
       [grant]="childGrant"
       [questionsLoading]="questionsLoading"

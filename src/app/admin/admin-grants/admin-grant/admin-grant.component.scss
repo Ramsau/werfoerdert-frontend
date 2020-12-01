@@ -1,7 +1,6 @@
 @use '../../../../style/globals' as *;
 
 app-admin-grant{
-  padding-left: 1em;
   display: block;
   border-left: 1px solid $grey;
 }
@@ -113,9 +112,22 @@ app-admin-grant{
   margin-top: 0;
 }
 
+.requirements{
+  margin-left: 5px;
+  margin-right: 5px;
+  line-height: 68px;
+}
 
-.requirementConditions{
-  margin: 5px;
+.edit{
+  display: none;
+  line-height: 68px;
+}
+.mouseover{
+  display: flex;
+}
+
+.mouseover:hover .edit{
+  display: flex;
 }
 
 
