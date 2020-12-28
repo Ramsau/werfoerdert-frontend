@@ -14,15 +14,31 @@
   outline: 0;
 }
 
+$linkBorderWidth: 2px;
 .linkContainer{
   background-color: $lightGrey;
   width: min-content;
-  border: 2px solid $page-background;
+  border: $linkBorderWidth solid $page-background;
   padding: 10px;
+  display: table-cell;
+}
+.linkContainer.active {
+  background-color: $primaryColor;
+
+  .link {
+    color: $secondaryColor;
+  }
 }
 .linkContainer:hover{
   background-color: $page-background;
-  border: 2px solid $lightGrey;
+  border: $linkBorderWidth solid $lightGrey;
   cursor: pointer;
 
+  .link {
+    color: black;
+  }
+}
+
+.linkBar {
+  margin: calc(-#{$body-margin} - #{$linkBorderWidth}) 0 $body-margin 0;
 }

@@ -1,6 +1,11 @@
 
+
+
 <div id="questionnaire-title">
-  <h1 *ngIf="state && !showGrantsMet">{{ state.current_grant.parent.name_de }} > {{ state.current_grant.name_de}}</h1>
+  <h1 *ngIf="state && !showGrantsMet">
+    <ng-container *ngIf="state.current_grant.parent">{{ state.current_grant.parent.name_de }} > </ng-container>
+    {{ state.current_grant.name_de}}
+  </h1>
   <h1 *ngIf="!state && !showGrantsMet">Fragebogen</h1>
   <h1 *ngIf="showGrantsMet">Resultat</h1>
 </div>

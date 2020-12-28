@@ -1,13 +1,14 @@
 <div id="admin-title">
   <h1>Adminseite</h1>
 </div>
-  <div id="admin-wrapper">
-    <div class="linkContainer">
-      <a routerLink="/admin" class="link">Grants </a>
+<div id="admin-wrapper">
+  <div class="linkBar">
+    <div class="linkContainer" routerLinkActive="active">
+      <a routerLink="/admin/grants" class="link">Grants </a>
     </div>
-    <div class="linkContainer">
+    <div class="linkContainer" routerLinkActive="active">
       <a routerLink="/admin/questions" class="link">Questions</a>
     </div>
-    <router-outlet></router-outlet>
   </div>
-
+  <router-outlet></router-outlet>
+</div>

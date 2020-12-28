@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: '', component: IndexComponent },
   { path: 'questionnaire', component: QuestionnaireComponent },
   { path: 'admin', component: AdminComponent, children: [
-      {path: '', component: AdminGrantsComponent},
+      {path: '', redirectTo: '/admin/grants', pathMatch: 'full'},
+      {path: 'grants', component: AdminGrantsComponent},
       {path: 'questions', component: AdminQuestionsComponent},
   ]},
 ];
