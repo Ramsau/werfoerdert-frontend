@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Question, QuestionType } from '../shared/question.model';
+import { Question, QuestionType, Requirement } from '../shared/question.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Grant } from '../shared/grant.model';
@@ -16,7 +16,6 @@ export class AdminService {
     return new Observable<Question[]>( subscriber => {
       if (this.cachedQuestions){
         setTimeout(() => {
-          // To prevent Error: "cannot access [subscription" - when trying to unsubscribe after getting data
           subscriber.next(this.cachedQuestions.slice());
         }, 0);
       }
@@ -82,9 +81,25 @@ export class AdminService {
         question,
       ).subscribe(
         (questionsReturn: any) => {
-          // post_question returns Array of all Questions, refreshing cache
           this.cachedQuestions = questionsReturn;
           subscriber.next(questionsReturn);
+          sub.unsubscribe();
+        },
+        error => {
+          subscriber.error(error);
+        }
+      );
+    });
+  }
+
+  postRequirement(requirement): Observable<Requirement[]> {
+    return new Observable<Requirement[]>( subscriber => {
+      const sub = this.httpClient.post<Requirement>(
+        '/api/admin/post_requirement',
+        requirement,
+      ).subscribe(
+        (requirementsReturn: any) => {
+          subscriber.next(requirementsReturn);
           sub.unsubscribe();
         },
         error => {
@@ -124,5 +139,20 @@ export class AdminService {
         }
       );
     });
+  }
+
+  getRequirements(): Observable<Requirement[]>{
+     return new Observable<Requirement[]>(subscriber => {
+       const sub = this.httpClient.get(
+         '/api/admin/get_requirements',
+       ).subscribe((requirements: Requirement[]) => {
+         subscriber.next(requirements);
+         sub.unsubscribe();
+         },
+         error => {
+         subscriber.error(error);
+         }
+       );
+     });
   }
 }

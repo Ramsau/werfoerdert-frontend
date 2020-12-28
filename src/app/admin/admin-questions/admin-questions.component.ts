@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild, Input } from '@angular/core';
 import { AdminService } from '../admin.service';
-import { Question, QuestionType } from '../../shared/question.model';
+import { Question, QuestionType, Requirement } from '../../shared/question.model';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { Message } from '../../shared/message/message.model';
-import {SharedService} from '../../shared/shared.service';
+import { SharedService } from '../../shared/shared.service';
 
 
 
@@ -14,6 +14,7 @@ import {SharedService} from '../../shared/shared.service';
 })
 export class AdminQuestionsComponent implements OnInit {
   questions: Question[];
+  requirements: Requirement[];
   questionTypes: QuestionType[];
   @ViewChild('collapseQuestionEdit') collapseQuestionEdit: ElementRef;
 
@@ -59,7 +60,7 @@ export class AdminQuestionsComponent implements OnInit {
     question.is_edit = !(question.is_edit === true);
   }
 
-  onQuestionEdit(question: unknown): void {
+   onQuestionEdit(question: unknown): void {
     this.adminService.postQuestion(question).subscribe(
       returnQuestions => {
         this.questions = returnQuestions.slice();
@@ -80,4 +81,23 @@ export class AdminQuestionsComponent implements OnInit {
       }
     );
   }
+
+  // Error Test functions
+  emitError(): void{
+    this.sharedService.messageEmitter.emit(Message.error('Ein Fehler ist aufgetreten!'));
+  }
+  emitInfo(): void{
+    this.sharedService.messageEmitter.emit(Message.info('Ey INFO!'));
+  }
+  emitSuccess(): void{
+    this.sharedService.messageEmitter.emit(Message.success('Guade Partie, hot funktioniert'));
+  }
+  emitWarn(): void{
+    this.sharedService.messageEmitter.emit(Message.warn('Dir sei verziehen!'));
+  }
+
 }
+
+
+
+

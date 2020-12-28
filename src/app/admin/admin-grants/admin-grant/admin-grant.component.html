@@ -3,43 +3,35 @@
     type="button"
     class="collapsible"
     (click)=onClick()
-  >{{ grant.name_de }}</button>
+  >{{ grant.name_de }}
+  </button>
   <div class="content" #collapseContent>
-    <p *ngFor="let requirement of grant.requirements">
+    <div class="questionParagraph" *ngFor="let requirement of grant.requirements">
       <app-loading *ngIf="questionsLoading || !requirement.question.text_de "></app-loading>
-      <span *ngIf="!questionsLoading || requirement.question.text_de">{{ requirement.question.text_de }}</span>
-    </p>
-    <button
-      type="button"
-      class="add_Question_button"
-      (click)=onClick_addQ()>
-        Add Question
-    </button>
-    <div class="addQuestion_form" #collapseQuestion>
-      <form class="formQuestions">
-        <div style="width:100%">
-          <input type="text" id="text_de" class="inputfields" name="text_de" placeholder="Frage auf Deutsch:">
-          <input type="text" id="text_en" class="inputfields" name="text_en" placeholder="Frage auf Englisch:">
-          <select class="inputfields">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </select>
+      <div
+        class="questionCollapsible mouseover"
+        *ngIf="!questionsLoading || requirement.question.text_de">
+        <div style="width: 18px;" class="requirements">
+          <i class="fas fa-edit edit"></i>
         </div>
-          <button
-            style="float: right;"
-            type="button"
-            class="submit_button"
-            name="submitButton"
-          >Submit</button>
-      </form>
+        <div class="requirements">{{ requirement.question.text_de }}</div>
+        <div class="requirements">
+          <i *ngIf="requirement.bool == true" class="fas fa-check"></i>
+          <i *ngIf="requirement.bool == false" class="fas fa-times"></i>
+          <div *ngIf="requirement.int_exact !== null" > = {{ requirement.int_exact }}</div>
+          <div *ngIf="requirement.int_lt !== null" > < {{ requirement.int_lt }}</div>
+          <div *ngIf="requirement.int_gt !== null" > > {{ requirement.int_gt }}</div>
+          <div *ngIf="requirement.date_exact !== null" > = {{ requirement.date_exact | date:"dd.MM.yyyy" }}</div>
+          <div *ngIf="requirement.date_lt !== null" > < {{ requirement.date_lt | date:"dd.MM.yyyy" }}</div>
+          <div *ngIf="requirement.date_gt !== null" > > {{ requirement.date_gt | date:"dd.MM.yyyy" }}</div>
+        </div>
+      </div>
     </div>
     <app-admin-grant
+      style="border: 1px solid black; margin:1px;"
       *ngFor="let childGrant of grant.children"
       [grant]="childGrant"
       [questionsLoading]="questionsLoading"
     ></app-admin-grant>
   </div>
 </div>
-
-

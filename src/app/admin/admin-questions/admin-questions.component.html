@@ -1,18 +1,22 @@
 <app-create-question (createQuestion)="onCreateQuestion($event)" [questionTypes]="questionTypes"></app-create-question>
+<button (click)="emitInfo()">Info</button>
+<button (click)="emitError()">Error</button>
+<button (click)="emitSuccess()">Success</button>
+<button (click)= "emitWarn()">Warning</button>
 <div *ngFor="let question of questions" class="mouseover">
   <div style="" class="question_field">
     <div class="symbol_placeholder">
-      <fa-icon [icon]="faTrash" class="edit" style="margin:16px; margin-right: 0;" (click)="onDeleteQuestion(question)" ></fa-icon>
+      <i class="fas fa-trash edit" style="margin:16px; margin-right: 0;" (click)="onDeleteQuestion(question)" ></i>
     </div>
     <div class="symbol_placeholder">
-      <fa-icon [icon]="faEdit" class="edit" style="margin:16px; margin-right: 0;" (click)="onQuestionEditCollapsible(question)"></fa-icon>
+      <i class="fas fa-edit edit" style="margin:16px; margin-right: 0;" (click)="onQuestionEditCollapsible(question)" ></i>
     </div>
     <div>
       <p style="margin: 16px; margin-right: 0;">
         {{ question.text_de }}
       </p>
     </div>
-  </div>
+</div>
   <div>
     <app-create-question
       *ngIf="question.is_edit"
