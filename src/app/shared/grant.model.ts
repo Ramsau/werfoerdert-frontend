@@ -10,6 +10,7 @@ export interface Grant{
   questions: Question[];
   children: Grant[];
   requirements: Requirement[];
+  is_edit?: boolean;
 }
 
 export interface QuestionnaireState{

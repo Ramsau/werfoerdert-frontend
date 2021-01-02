@@ -1,11 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AdminService } from '../admin.service';
-import { Question, QuestionType, Requirement } from '../../shared/question.model';
-import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { Question, QuestionType } from '../../shared/question.model';
 import { Message } from '../../shared/message/message.model';
 import { SharedService } from '../../shared/shared.service';
-
-
 
 @Component({
   selector: 'app-admin-questions',
@@ -14,12 +11,10 @@ import { SharedService } from '../../shared/shared.service';
 })
 export class AdminQuestionsComponent implements OnInit {
   questions: Question[];
-  requirements: Requirement[];
   questionTypes: QuestionType[];
   @ViewChild('collapseQuestionEdit') collapseQuestionEdit: ElementRef;
 
-  faEdit = faEdit;
-  faTrash = faTrash;
+  showCreateQuestion = false;
 
   constructor(
     private adminService: AdminService,
@@ -33,7 +28,7 @@ export class AdminQuestionsComponent implements OnInit {
         this.questions = questions;
         subQ.unsubscribe();
       },
-      error => {
+      () => {
         this.sharedService.messageEmitter.emit(Message.warn('Der Server konnte nicht erreicht werden.'));
       }
     );
@@ -46,11 +41,11 @@ export class AdminQuestionsComponent implements OnInit {
   }
 
   onCreateQuestion(question: unknown): void {
-    const postQ = this.adminService.postQuestion(question).subscribe(
+    this.adminService.postQuestion(question).subscribe(
       returnQuestions => {
         this.questions = returnQuestions.slice();
       },
-      error => {
+      () => {
         this.sharedService.messageEmitter.emit(Message.warn('Der Server konnte nicht erreicht werden.'));
       }
     );
@@ -65,7 +60,7 @@ export class AdminQuestionsComponent implements OnInit {
       returnQuestions => {
         this.questions = returnQuestions.slice();
       },
-      error => {
+      () => {
         this.sharedService.messageEmitter.emit(Message.warn('Der Server konnte nicht erreicht werden.'));
       }
     );
@@ -76,7 +71,7 @@ export class AdminQuestionsComponent implements OnInit {
       returnQuestions => {
         this.questions = returnQuestions.slice();
       },
-      error => {
+      () => {
         this.sharedService.messageEmitter.emit(Message.warn('Der Server konnte nicht erreicht werden.'));
       }
     );

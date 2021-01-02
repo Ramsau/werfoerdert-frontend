@@ -17,6 +17,7 @@ import { AdminQuestionsComponent } from './admin/admin-questions/admin-questions
 import { AdminGrantComponent } from './admin/admin-grants/admin-grant/admin-grant.component';
 import { CreateQuestionComponent } from './admin/create-question/create-question.component';
 import { MessageComponent } from './shared/message/message.component';
+import {ClickOutsideModule} from 'ng-click-outside';
 
 @NgModule({
   declarations: [
@@ -34,12 +35,13 @@ import { MessageComponent } from './shared/message/message.component';
     MessageComponent,
   ],
     imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        routing,
-        FormsModule
+      BrowserModule,
+      AppRoutingModule,
+      HttpClientModule,
+      ReactiveFormsModule,
+      routing,
+      FormsModule,
+      ClickOutsideModule,
     ],
   providers: [HttpClient ],
   bootstrap: [AppComponent]

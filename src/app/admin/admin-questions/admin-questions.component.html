@@ -1,8 +1,13 @@
-<app-create-question (createQuestion)="onCreateQuestion($event)" [questionTypes]="questionTypes"></app-create-question>
-<button (click)="emitInfo()">Info</button>
-<button (click)="emitError()">Error</button>
-<button (click)="emitSuccess()">Success</button>
-<button (click)= "emitWarn()">Warning</button>
+<div   (clickOutside)="showCreateQuestion = false">
+  <app-create-question
+    (createQuestion)="onCreateQuestion($event)"
+    [questionTypes]="questionTypes"
+    *ngIf="showCreateQuestion"
+  >
+  </app-create-question>
+  <button class="btn" (click)="showCreateQuestion=true"><i class="fas fa-plus"></i></button>
+</div>
+
 <div *ngFor="let question of questions" class="mouseover">
   <div style="" class="question_field">
     <div class="symbol_placeholder">

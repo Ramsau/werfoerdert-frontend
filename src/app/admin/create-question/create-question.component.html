@@ -1,33 +1,17 @@
+<!--suppress HtmlFormInputWithoutLabel -->
 <form style="display: flex" (ngSubmit)="onQuestionAdd()" #questionAddForm="ngForm">
   <div style="width:90%;" >
     <input type="text" id="text_de" [(ngModel)]="modelQ.textDe" class="inputfields" name="text_de" placeholder="Frage auf Deutsch:" style="width: calc(100% - 10px)">
     <input type="text" id="text_en" [(ngModel)]="modelQ.textEn" class="inputfields" name="text_en" placeholder="Frage auf Englisch:" style="width: calc(100% - 10px)">
-    <div style="display: flex">
-      <select [(ngModel)]="modelQ.questionType" class="inputfields" style="width: 33%" name="questiontype" id="questiontype">
-        <option
-          *ngFor="let questionType of questionTypes"
-          [value]="questionType.id"
-        >
-          {{ questionType.name_de }}
-        </option>
-      </select>
-      <select id="bool" class="inputfields" style="width: 33%">
-        <option>Kein Boolean</option>
-        <option>Nein</option>
-        <option>Ja</option>
-      </select>
-      <select id="under_grant" class="inputfields" style="width: 33%">
-        <option>Grant 1</option>
-        <option>Grant 2</option>
-        <option>Grant 3</option>
-      </select>
-    </div>
-    <input type="text" id="int_exact" class="inputfields" style="width: calc(33% - 6px)" name="" placeholder="Zahl exakt:">
-    <input type="text" id="int_lt" class="inputfields" style="width: calc(33% - 6px)" name="" placeholder="Zahl frühestens:">
-    <input type="text" id="int_gt" class="inputfields" style="width: calc(33% - 6px)" name="" placeholder="Zahl spätestens:">
-    <input type="text" id="date_exact" class="inputfields" style="width: calc(33% - 6px)" name="" placeholder="Datum exakt:">
-    <input type="text" id="date_lt" class="inputfields" style="width: calc(33% - 6px)" name="" placeholder="Datum frühestens:">
-    <input type="text" id="date_gt" class="inputfields" style="width: calc(33% - 6px)" name="" placeholder="Datum spätestens:">
+    <select [(ngModel)]="modelQ.questionType" class="inputfields" name="questiontype" id="questiontype">
+      <option [ngValue]="null" [disabled]="true">Select question type...</option>
+      <option
+        *ngFor="let questionType of questionTypes"
+        [value]="questionType.id"
+      >
+        {{ questionType.name_de }}
+      </option>
+    </select>
   </div>
   <div style="display: flex; align-items: center">
     <button
